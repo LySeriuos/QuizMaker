@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMaker", "QuizMaker\QuizMaker.csproj", "{FD974149-A58C-406C-ADE9-AF8125E9953B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD974149-A58C-406C-ADE9-AF8125E9953B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD974149-A58C-406C-ADE9-AF8125E9953B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD974149-A58C-406C-ADE9-AF8125E9953B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD974149-A58C-406C-ADE9-AF8125E9953B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3235343-EBAB-4ACE-BEA3-B82BD0279083}
+	EndGlobalSection
+EndGlobal
