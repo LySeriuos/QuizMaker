@@ -7,6 +7,7 @@
             //1. Create data, UI and logic classes.
             UI.PrintTheCreatingQuestionsRools();
             //2. Get the questions and answers from the user and add them to Objects array.
+            UI.GetTheUsersQuestionsAndAnswers();
             //3. Push array to txt file.
             //4. On game play Print out Random questons and 3 different answers to choose from.
             //5. Ask user to enter correct answer.
