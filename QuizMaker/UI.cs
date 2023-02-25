@@ -21,5 +21,13 @@ namespace QuizMaker
             return userQuestion;
         }
 
+        public static string SplitTheUserStringWithQuestionsAndAnswers(string userQuestion)
+        {
+            string[] userQuestionsList = userQuestion.Split(" | ");
+            foreach (string question in userQuestionsList)
+                Console.WriteLine(question);
+            return userQuestion.Trim();
+        }
+
     }
 }
