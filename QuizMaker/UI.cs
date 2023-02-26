@@ -1,4 +1,6 @@
 ﻿
+using static QuizMaker.Data;
+
 namespace QuizMaker
 {
     internal class UI
@@ -21,12 +23,26 @@ namespace QuizMaker
             return userQuestion;
         }
 
-      
+        public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
+        {
+            UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
+            string[] userQuestionsArray = userQna.Split(" | ");
+            qna.Question = userQuestionsArray[0];
+            qna.AnswerOne = userQuestionsArray[1];
+            qna.AnswerTwo = userQuestionsArray[2];
+            qna.AnswerThree = userQuestionsArray[3];
+            qna.AnswerFour = userQuestionsArray[4];
+
+            //TODO: correctanswer
 
 
-        
+            return qna;
+        }
 
-        
+
+
+
+
 
 
     }
