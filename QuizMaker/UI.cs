@@ -11,16 +11,25 @@ namespace QuizMaker
             Console.WriteLine("“What color is the sky? | red | blue* | green”.");
             Console.WriteLine("Type “finish” in the console to finish adding questions with answers.");
             Console.WriteLine("Type “start” to begin Quiz game or exit to quit it!");
-            
+
         }
         public static string GetTheUsersQuestionsAndAnswers()
         {
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
-            string userQuestion = Console.ReadLine();            
+            string userQuestion = Console.ReadLine();
             return userQuestion;
         }
 
+        public class UserQuestionsAndAnswers
+        {
+            public string Question;
+            public string AnswerOne;
+            public string AnswerTwo;
+            public string AnswerThree;
+            public string AnswerFour;
+            public string CorrectAnswer;
+        }
         public static string SplitTheUserStringWithQuestionsAndAnswers(string userQuestion)
         {
             string[] userQuestionsList = userQuestion.Split(" | ");
@@ -28,6 +37,7 @@ namespace QuizMaker
                 Console.WriteLine(question);
             return userQuestion.Trim();
         }
+
 
     }
 }

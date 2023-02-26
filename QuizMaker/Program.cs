@@ -9,7 +9,15 @@
             //2. Get the questions and answers from the user and add them to Objects array.
             string userQuestions = UI.GetTheUsersQuestionsAndAnswers();
             //3. Push array to txt file.
-            UI.SplitTheUserStringWithQuestionsAndAnswers(userQuestions);
+            // Create a list and add questions with answers to that list
+            //var myList = UI.questionsAndAnswersList(userQuestions);
+            //for (int i = 0; i < myList.Count; i++)
+            //{
+            //    Console.WriteLine(myList[i]);
+            //}
+            // Spliting questions from answers
+            var trying = UI.SplitTheUserStringWithQuestionsAndAnswers(userQuestions);
+            Console.WriteLine(trying + "sita eilute");
             //4. On game play Print out Random questons and 3 different answers to choose from.
             //5. Ask user to enter correct answer.
             //6. Check if user's answer is matching with correct answer in txt file. Can be multiple answers correct.
