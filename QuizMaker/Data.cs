@@ -10,6 +10,11 @@ namespace QuizMaker
             public string AnswerTwo;
             public string AnswerThree;
             public string AnswerFour;
+        }
+        public class UsersCorrectQuestionAndAnswers
+        {
+            public string Question;
+            public int ID;
             public string CorrectAnswer;
         }
     }
