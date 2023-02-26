@@ -1,4 +1,6 @@
-﻿namespace QuizMaker
+﻿using static QuizMaker.UI;
+
+namespace QuizMaker
 {
     internal class Program
     {
@@ -11,19 +13,19 @@
             //3. Push array to txt file.
             // Create a list and add questions with answers to that list
             //var myList = UI.questionsAndAnswersList(userQuestions);
-            //for (int i = 0; i < myList.Count; i++)
-            //{
-            //    Console.WriteLine(myList[i]);
-            //}
+            
             // Spliting questions from answers
-            var trying = UI.SplitTheUserStringWithQuestionsAndAnswers(userQuestions);
-            Console.WriteLine(trying + "sita eilute");
+            
+
+            
             //4. On game play Print out Random questons and 3 different answers to choose from.
             //5. Ask user to enter correct answer.
             //6. Check if user's answer is matching with correct answer in txt file. Can be multiple answers correct.
             //7. Add winning points if it was correct. Print it later at the end of the game.
             // Bonus:
             //8. Save players name and scores to the txt file and show the top score at the beggining of the game.
+
+
         }
     }
 }
