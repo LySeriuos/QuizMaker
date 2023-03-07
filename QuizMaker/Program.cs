@@ -1,4 +1,6 @@
-﻿using static QuizMaker.UI;
+﻿using System.Security.Cryptography.X509Certificates;
+using static QuizMaker.Data;
+using static QuizMaker.UI;
 
 namespace QuizMaker
 {
@@ -12,12 +14,20 @@ namespace QuizMaker
             string userQuestions = UI.GetTheUsersQuestionsAndAnswers();
             //3. Push array to txt file.
             // Create a list and add questions with answers to that list
-            //var myList = UI.questionsAndAnswersList(userQuestions);
-            
-            // Spliting questions from answers
-            
+            //            string myList = UI.ParseUserQnAString(userQuestions).ToString();
+            //            foreach(var author in myList)
+            //{
+            //                Console.WriteLine("Author: {0},{1},{2},{3},{4}");
+            //            }
+            Console.WriteLine(UI.ParseUserQnAString(userQuestions).ToString());
 
             
+            
+            
+
+            // Spliting questions from answers
+
+
             //4. On game play Print out Random questons and 3 different answers to choose from.
             //5. Ask user to enter correct answer.
             //6. Check if user's answer is matching with correct answer in txt file. Can be multiple answers correct.

@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+using System.Linq;
 using static QuizMaker.Data;
 
 namespace QuizMaker
@@ -26,18 +28,31 @@ namespace QuizMaker
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
             UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
+            List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string[] userQuestionsArray = userQna.Split(" | ");
+            for (int i = 0; i < userQuestionsArray.Length; i++)
+            {
+                userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
+                Console.WriteLine(userQuestionsArray[i]);
+            }
+
             qna.Question = userQuestionsArray[0];
             qna.AnswerOne = userQuestionsArray[1];
             qna.AnswerTwo = userQuestionsArray[2];
             qna.AnswerThree = userQuestionsArray[3];
             qna.AnswerFour = userQuestionsArray[4];
 
+            qNaList.Add(qna);
+
             //TODO: correctanswer
 
-
             return qna;
-        }
+        }        
+
+        
+
+
+
 
 
 
