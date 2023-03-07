@@ -20,10 +20,10 @@ namespace QuizMaker
             //                Console.WriteLine("Author: {0},{1},{2},{3},{4}");
             //            }
             Console.WriteLine(UI.ParseUserQnAString(userQuestions).ToString());
+            string myList2 = UI.ParseCorrectAnswerAndQuestion(userQuestions).ToString();
 
-            
-            
-            
+
+
 
             // Spliting questions from answers
 

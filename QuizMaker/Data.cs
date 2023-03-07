@@ -21,17 +21,11 @@ namespace QuizMaker
             public int ID = 0;
             public string CorrectAnswer;
             
-            public static int Count { get; internal set; }
+            
             public override string ToString()
             {
                 return $"Question: {Question} \nID:{ID} \nCorrect Answer:{CorrectAnswer}";
-            }
-            public static void AddToList(string qca)
-            {
-                List<String> questAnsw = new List<String>();
-                questAnsw.Add(qca);
-                return;
-            }
+            }            
         }
       
     }

@@ -47,9 +47,32 @@ namespace QuizMaker
             //TODO: correctanswer
 
             return qna;
-        }        
+        }
 
-        
+        public static UsersCorrectQuestionAndAnswers ParseCorrectAnswerAndQuestion(string userQna)
+        {
+            List<UsersCorrectQuestionAndAnswers> corAnQ = new List<UsersCorrectQuestionAndAnswers>();
+            UsersCorrectQuestionAndAnswers qca = new UsersCorrectQuestionAndAnswers();
+            string[] userQuestionsArray = userQna.Split(" | ");
+            
+            
+            for (int i = 0; i < userQuestionsArray.Length; i++)
+            {
+                if (userQuestionsArray[i].Contains('*'))
+                {
+                    qca.Question = userQuestionsArray[0];
+                    userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
+                    qca.CorrectAnswer = userQuestionsArray[i];
+                    qca.ID++;
+                    corAnQ.Add(qca);
+                    Console.WriteLine(qca);
+                }
+                
+            }
+            return qca;
+        }
+
+
 
 
 
