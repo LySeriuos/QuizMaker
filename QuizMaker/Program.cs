@@ -9,18 +9,22 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //1. Create data, UI and logic classes.
+
             UI.PrintTheCreatingQuestionsRools();
+
             //2. Get the questions and answers from the user and add them to Objects array.
-            string userQuestions = UI.GetTheUsersQuestionsAndAnswers();
+
+            string userQuestions;
+            do
+            {                
+                userQuestions = UI.GetTheUsersQuestionsAndAnswers();
+
+            } while (userQuestions.Length > 0);
+
             //3. Push array to txt file.
             // Create a list and add questions with answers to that list
-            //            string myList = UI.ParseUserQnAString(userQuestions).ToString();
-            //            foreach(var author in myList)
-            //{
-            //                Console.WriteLine("Author: {0},{1},{2},{3},{4}");
-            //            }
-            Console.WriteLine(UI.ParseUserQnAString(userQuestions).ToString());
-            string myList2 = UI.ParseCorrectAnswerAndQuestion(userQuestions).ToString();
+         
+
 
 
 

@@ -44,8 +44,6 @@ namespace QuizMaker
 
             qNaList.Add(qna);
 
-            //TODO: correctanswer
-
             return qna;
         }
 
@@ -53,8 +51,7 @@ namespace QuizMaker
         {
             List<UsersCorrectQuestionAndAnswers> corAnQ = new List<UsersCorrectQuestionAndAnswers>();
             UsersCorrectQuestionAndAnswers qca = new UsersCorrectQuestionAndAnswers();
-            string[] userQuestionsArray = userQna.Split(" | ");
-            
+            string[] userQuestionsArray = userQna.Split(" | ");            
             
             for (int i = 0; i < userQuestionsArray.Length; i++)
             {
