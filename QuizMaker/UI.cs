@@ -45,10 +45,10 @@ namespace QuizMaker
         }
 
         
-        public static UsersCorrectQuestionAndAnswers ParseCorrectAnswerAndQuestion(string userQna)
+        public static UserCorrectQuestionAndAnswers ParseCorrectAnswerAndQuestion(string userQna)
         {
-            List<UsersCorrectQuestionAndAnswers> corAnQ = new List<UsersCorrectQuestionAndAnswers>();
-            UsersCorrectQuestionAndAnswers qca = new UsersCorrectQuestionAndAnswers();
+            List<UserCorrectQuestionAndAnswers> corAnQ = new List<UserCorrectQuestionAndAnswers>();
+            UserCorrectQuestionAndAnswers qca = new UserCorrectQuestionAndAnswers();
             string[] userQuestionsArray = userQna.Split(" | ");            
             
             for (int i = 0; i < userQuestionsArray.Length; i++)
