@@ -6,8 +6,10 @@ namespace QuizMaker
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
+            List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             //1. Create data, UI and logic classes.
 
             UI.PrintTheCreatingQuestionsRools();
@@ -16,14 +18,25 @@ namespace QuizMaker
 
             string userQuestions;
             do
-            {                
+            {
                 userQuestions = UI.GetTheUsersQuestionsAndAnswers();
+                UserQuestionsAndAnswers uQnA =  UI.ParseUserQnAString(userQuestions);
+                qNaList.Add(uQnA);
+                foreach (UserQuestionsAndAnswers answer in qNaList)
+                {
+                    Console.WriteLine(answer);
+                }
 
+                
             } while (userQuestions.Length > 0);
+           
+
+
+
 
             //3. Push array to txt file.
             // Create a list and add questions with answers to that list
-         
+
 
 
 
