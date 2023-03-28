@@ -28,8 +28,19 @@ namespace QuizMaker
                 {
                     Console.WriteLine(answer);
                 }
-
-                Data.SaveQnAListToXml(qNaList);
+                
+                if(qNaList.Count > 0)
+                {
+                    qNaList = GetQnAListToXml();
+                    foreach (UserQuestionsAndAnswers answer in qNaList)
+                    {
+                        Console.WriteLine(answer);
+                    }
+                }
+                else
+                {
+                    Data.SaveQnAListToXml(qNaList);
+                }
             } while (userQuestions.Length > 0);
 
 

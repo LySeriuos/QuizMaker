@@ -16,6 +16,18 @@ namespace QuizMaker
             }
             
         }
+        public static List<UserQuestionsAndAnswers> GetQnAListToXml()
+        {
+            List<UserQuestionsAndAnswers> qNaList;
+            var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
+            XmlSerializer XmlSerializer = new XmlSerializer(typeof(List<UserQuestionsAndAnswers>));
+            using (FileStream file = File.OpenRead(path))
+            {
+                qNaList = XmlSerializer.Deserialize(file) as List<UserQuestionsAndAnswers>;
+                return qNaList;
+            }
+
+        }
 
     }
 }
