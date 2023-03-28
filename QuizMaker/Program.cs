@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using static QuizMaker.Data;
 using static QuizMaker.UI;
 
@@ -6,7 +7,7 @@ namespace QuizMaker
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
@@ -20,16 +21,18 @@ namespace QuizMaker
             do
             {
                 userQuestions = UI.GetTheUsersQuestionsAndAnswers();
-                UserQuestionsAndAnswers uQnA =  UI.ParseUserQnAString(userQuestions);
+                UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                 qNaList.Add(uQnA);
+
                 foreach (UserQuestionsAndAnswers answer in qNaList)
                 {
                     Console.WriteLine(answer);
                 }
 
-                
+                Data.SaveQnAListToXml(qNaList);
             } while (userQuestions.Length > 0);
-           
+
+
 
 
 
