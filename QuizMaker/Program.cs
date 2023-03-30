@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 using static QuizMaker.Data;
 using static QuizMaker.UI;
+using System.IO;
 
 namespace QuizMaker
 {
@@ -18,55 +20,57 @@ namespace QuizMaker
             //2. Get the questions and answers from the user and add them to Objects array.
 
             string userQuestions;
-            do
+            if (File.Exists(@"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml"))
             {
-                userQuestions = UI.GetTheUsersQuestionsAndAnswers();
-                UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
-                qNaList.Add(uQnA);
-
+                qNaList = Data.GetQnAListToXml();
                 foreach (UserQuestionsAndAnswers answer in qNaList)
                 {
                     Console.WriteLine(answer);
                 }
-                
-                if(qNaList.Count > 0)
+            }
+            else
+            {
+
+                do
                 {
-                    qNaList = GetQnAListToXml();
+                    userQuestions = UI.GetTheUsersQuestionsAndAnswers();
+                    UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+                    qNaList.Add(uQnA);
                     foreach (UserQuestionsAndAnswers answer in qNaList)
                     {
                         Console.WriteLine(answer);
                     }
-                }
-                else
-                {
                     Data.SaveQnAListToXml(qNaList);
-                }
-            } while (userQuestions.Length > 0);
 
 
-
-
-
-
-            //3. Push array to txt file.
-            // Create a list and add questions with answers to that list
-
-
-
-
-
-
-            // Spliting questions from answers
-
-
-            //4. On game play Print out Random questons and 3 different answers to choose from.
-            //5. Ask user to enter correct answer.
-            //6. Check if user's answer is matching with correct answer in txt file. Can be multiple answers correct.
-            //7. Add winning points if it was correct. Print it later at the end of the game.
-            // Bonus:
-            //8. Save players name and scores to the txt file and show the top score at the beggining of the game.
-
-
+                } while (userQuestions.Length > 0);
+            }
         }
+
+
+
+
+
+
+
+        //3. Push array to txt file.
+        // Create a list and add questions with answers to that list
+
+
+
+
+
+
+        // Spliting questions from answers
+
+
+        //4. On game play Print out Random questons and 3 different answers to choose from.
+        //5. Ask user to enter correct answer.
+        //6. Check if user's answer is matching with correct answer in txt file. Can be multiple answers correct.
+        //7. Add winning points if it was correct. Print it later at the end of the game.
+        // Bonus:
+        //8. Save players name and scores to the txt file and show the top score at the beggining of the game.
+
+
     }
 }
