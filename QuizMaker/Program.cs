@@ -12,6 +12,17 @@ namespace QuizMaker
 
         static void Main(string[] args)
         {
+
+            string path = @"C:\Temp"; //TODO: look at relative paths
+            GameMode selection = UI.SelectGameMode();
+
+            switch(selection)
+            {
+                case GameMode.AddQuestions: //add questions
+                    break;
+                    //etc.
+            }
+
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             //1. Create data, UI and logic classes.
 
@@ -20,17 +31,20 @@ namespace QuizMaker
             //2. Get the questions and answers from the user and add them to Objects array.
 
             string userQuestions;
-            if (File.Exists(@"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml"))
+            if (File.Exists(path)) 
             {
                 qNaList = Data.GetQnAListToXml();
                 foreach (UserQuestionsAndAnswers answer in qNaList)
                 {
                     Console.WriteLine(answer);
                 }
+                for(int i = 0; i < qNaList.Count; i++)
+                {
+                    Console.WriteLine(qNaList[i]);
+                }
             }
             else
             {
-
                 do
                 {
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers();
@@ -40,8 +54,7 @@ namespace QuizMaker
                     {
                         Console.WriteLine(answer);
                     }
-                    Data.SaveQnAListToXml(qNaList);
-
+                    Data.SaveQnAListToXml(qNaList,path);
 
                 } while (userQuestions.Length > 0);
             }

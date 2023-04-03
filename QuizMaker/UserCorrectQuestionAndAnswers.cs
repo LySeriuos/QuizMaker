@@ -12,7 +12,6 @@ namespace QuizMaker
         public int ID = 0;
         public string CorrectAnswer;
 
-
         public override string ToString()
         {
             return $"Question: {Question} \nID:{ID} \nCorrect Answer:{CorrectAnswer}";

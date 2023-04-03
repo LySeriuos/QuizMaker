@@ -6,9 +6,9 @@ namespace QuizMaker
 
     public class Data
     {
-        public static void SaveQnAListToXml(List<UserQuestionsAndAnswers> qNaList)
+        public static void SaveQnAListToXml(List<UserQuestionsAndAnswers> qNaList,string path)
         {
-            var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
+        //    var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
             XmlSerializer XmlSerializer = new XmlSerializer(typeof(List<UserQuestionsAndAnswers>));
             using (FileStream file = File.Create(path))
             {
@@ -16,10 +16,9 @@ namespace QuizMaker
             }
             
         }
-        public static List<UserQuestionsAndAnswers> GetQnAListToXml()
+        public static List<UserQuestionsAndAnswers> GetQnAListToXml(string path)
         {
             List<UserQuestionsAndAnswers> qNaList;
-            var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
             XmlSerializer XmlSerializer = new XmlSerializer(typeof(List<UserQuestionsAndAnswers>));
             using (FileStream file = File.OpenRead(path))
             {
