@@ -29,41 +29,48 @@ namespace QuizMaker
         {
             UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
             
+
             string[] userQuestionsArray = userQna.Split(" | ");
+
             for (int i = 0; i < userQuestionsArray.Length; i++)
             {
+                
                 userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
-                //Console.WriteLine(userQuestionsArray[i]);
+                //Console.WriteLine(userQuestionsArray[i]);        
+
             }
 
             qna.Question = userQuestionsArray[0];
             qna.AnswerOne = userQuestionsArray[1];
             qna.AnswerTwo = userQuestionsArray[2];
             qna.AnswerThree = userQuestionsArray[3];
-            qna.AnswerFour = userQuestionsArray[4];
+            qna.AnswerFour = userQuestionsArray[4];            
+
             return qna;
         }
 
-        
-        public static UserCorrectQuestionAndAnswers ParseCorrectAnswerAndQuestion(string userQna)
-        {
+
+        public static List <UserCorrectQuestionAndAnswers> ParseCorrectAnswerAndQuestion(string userQna)
+        {            
             List<UserCorrectQuestionAndAnswers> corAnQ = new List<UserCorrectQuestionAndAnswers>();
-            UserCorrectQuestionAndAnswers qca = new UserCorrectQuestionAndAnswers();
-            string[] userQuestionsArray = userQna.Split(" | ");            
-            
+
+            string[] userQuestionsArray = userQna.Split(" | ");
+
             for (int i = 0; i < userQuestionsArray.Length; i++)
             {
+                UserCorrectQuestionAndAnswers qca = new UserCorrectQuestionAndAnswers();
                 if (userQuestionsArray[i].Contains('*'))
                 {
-                    qca.Question = userQuestionsArray[0];
                     userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
+
                     qca.CorrectAnswer = userQuestionsArray[i];
-                    qca.ID++;
-                    corAnQ.Add(qca);
+
+                    Console.WriteLine($"{qca.CorrectAnswer}");
+                    corAnQ.Add(qca);                   
                 }
-                
-            }
-            return qca;
+            }           
+           
+            return corAnQ;
         }
 
 

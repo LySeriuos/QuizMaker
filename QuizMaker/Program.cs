@@ -13,17 +13,18 @@ namespace QuizMaker
         static void Main(string[] args)
         {
 
-            string path = @"C:\Temp"; //TODO: look at relative paths
-            GameMode selection = UI.SelectGameMode();
+            string path = @"C:\Temp\UserQuestionsAndAnswers.xml"; //TODO: look at relative paths
+            //GameMode selection = UI.SelectGameMode();
 
-            switch(selection)
-            {
-                case GameMode.AddQuestions: //add questions
-                    break;
-                    //etc.
-            }
+            //switch(selection)
+            //{
+            //    case GameMode.AddQuestions: //add questions
+            //        break;
+            //        //etc.
+            //}
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
+            List<UserCorrectQuestionAndAnswers> corAnQ = new List<UserCorrectQuestionAndAnswers>();
             //1. Create data, UI and logic classes.
 
             UI.PrintTheCreatingQuestionsRools();
@@ -31,14 +32,14 @@ namespace QuizMaker
             //2. Get the questions and answers from the user and add them to Objects array.
 
             string userQuestions;
-            if (File.Exists(path)) 
+            if (File.Exists(path))
             {
-                qNaList = Data.GetQnAListToXml();
+                qNaList = Data.GetQnAListToXml(path);
                 foreach (UserQuestionsAndAnswers answer in qNaList)
                 {
                     Console.WriteLine(answer);
                 }
-                for(int i = 0; i < qNaList.Count; i++)
+                for (int i = 0; i < qNaList.Count; i++)
                 {
                     Console.WriteLine(qNaList[i]);
                 }
@@ -49,12 +50,26 @@ namespace QuizMaker
                 {
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers();
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+                    //UserCorrectQuestionAndAnswers uCorAnsw = UI.ParseCorrectAnswerAndQuestion(userQuestions);
+
+                    
                     qNaList.Add(uQnA);
-                    foreach (UserQuestionsAndAnswers answer in qNaList)
+
+                    //qNaList.AddRange(corAnQ);
+                    List<UserCorrectQuestionAndAnswers> corAnQQ = UI.ParseCorrectAnswerAndQuestion(userQuestions);
+                    
+                   
+
+                    for (int i = 0; i < corAnQQ.Count; i++)
                     {
-                        Console.WriteLine(answer);
+
+                        Console.WriteLine($"{corAnQQ[i]}galutinis");
                     }
-                    Data.SaveQnAListToXml(qNaList,path);
+
+                    //qNaList.AddRange(corAnQQ);
+
+
+                    Data.SaveQnAListToXml(qNaList, path);
 
                 } while (userQuestions.Length > 0);
             }
