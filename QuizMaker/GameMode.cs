@@ -9,6 +9,7 @@ namespace QuizMaker
     internal enum GameMode
     {
         AddQuestions,
-        PlayGame
+        PlayGame,
+        INVALID
     }
 }

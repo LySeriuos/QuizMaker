@@ -12,22 +12,24 @@ namespace QuizMaker
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
 
             string path = @"C:\Temp\UserQuestionsAndAnswers.xml"; //TODO: look at relative paths
-            // aski this
-            GameMode selection = (GameMode)UI.SelectGameMode();
+            // ask this
+            GameMode selection = UI.SelectGameMode();
 
             switch (selection)
             {
                 case GameMode.AddQuestions: //add questions
                     break;
 
-
-                case GameMode.PlayGame:
+                case GameMode.PlayGame: // play game
                     break;
+
+                default:
+                    Console.WriteLine("Unknown choice");
+                    return;
             }
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
@@ -41,14 +43,11 @@ namespace QuizMaker
             if (File.Exists(path))
             {
                 qNaList = Data.GetQnAListToXml(path);
-                foreach (UserQuestionsAndAnswers answer in qNaList)
-                {
-                    Console.WriteLine(answer);
-                }
-                for (int i = 0; i < qNaList.Count; i++)
-                {
-                    Console.WriteLine(qNaList[i]);
-                }
+               
+                //for (int i = 0; i < qNaList.Count; i++)
+                //{
+                //    Console.WriteLine(qNaList[i]);
+                //}
             }
             else
             {

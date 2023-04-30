@@ -17,14 +17,28 @@ namespace QuizMaker
             Console.WriteLine("Type “finish” in the console to finish adding questions with answers.");
             Console.WriteLine("Type “start” to begin Quiz game or exit to quit it!");
         }
-
-        public static int SelectGameMode()
+        public static bool Continue()
+        {
+            Console.WriteLine("Want to continue?");
+            return Console.ReadLine().ToUpper() == "Y";
+        }
+        public static GameMode SelectGameMode()
         {
             Console.WriteLine("Please make your selection");
             Console.WriteLine("0 Add Questions");
             Console.WriteLine("1 Play Game");
             int Selection = int.Parse(Console.ReadLine());
-            return Selection;
+            switch(Selection)
+            {
+                case 0:
+                    return GameMode.AddQuestions;
+                
+                case 1:
+                    return GameMode.PlayGame;
+             
+                default:
+                    return GameMode.INVALID;
+            }
         }
 
         public static string GetTheUsersQuestionsAndAnswers()
@@ -38,10 +52,10 @@ namespace QuizMaker
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
             UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
-            int arrayPosition;
+          //  int arrayPosition;
             string[] userQnaArray = userQna.Split(" | ");
             // magic numbers
-            for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
+            for (int arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {
                 userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
                 //Console.WriteLine(userQnaArray[i]);

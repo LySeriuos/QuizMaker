@@ -17,7 +17,7 @@ namespace QuizMaker
         public List <string> CorrectAnswers = new List <string>();
         public override string ToString()
         {
-            return $"Question: {Question} \nA: {AnswerOne} \tB: {AnswerTwo} \nC: {AnswerThree} \tD: {AnswerFour}, \tF: {CorrectAnswers}";
+            return $"Question: {Question} \nA: {AnswerOne} \tB: {AnswerTwo} \nC: {AnswerThree} \tD: {AnswerFour}";
         }
     }
 }
