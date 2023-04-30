@@ -23,25 +23,25 @@ namespace QuizMaker
             Console.WriteLine("Write your questions with the answers!");
             string userQuestion = Console.ReadLine();
             return userQuestion;
-        }
+        }        
 
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
-            UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();           
-
-            string[] userQuestionsArray = userQna.Split(" | ");
-
-            for (int i = 0; i < userQuestionsArray.Length; i++)
+            UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
+            int arrayPosition;
+            string[] userQnaArray = userQna.Split(" | ");
+            // magic numbers
+            for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {                
-                userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
-                //Console.WriteLine(userQuestionsArray[i]);
+                userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
+                //Console.WriteLine(userQnaArray[i]);
             }
 
-            qna.Question = userQuestionsArray[0];
-            qna.AnswerOne = userQuestionsArray[1];
-            qna.AnswerTwo = userQuestionsArray[2];
-            qna.AnswerThree = userQuestionsArray[3];
-            qna.AnswerFour = userQuestionsArray[4];
+            qna.Question = userQnaArray[0];
+            qna.AnswerOne = userQnaArray[1];
+            qna.AnswerTwo = userQnaArray[2];
+            qna.AnswerThree = userQnaArray[3];
+            qna.AnswerFour = userQnaArray[4];
 
             return qna;
         }
@@ -49,16 +49,16 @@ namespace QuizMaker
         public static List <string> ParseCorrectAnswers(string userQna)
         {            
             List<string> corAnQ = new List<string>();
-
-            string[] userQuestionsArray = userQna.Split(" | ");
-
-            for (int i = 0; i < userQuestionsArray.Length; i++)
+            string[] userQnaArray = userQna.Split(" | ");
+            // magic number
+            int arrayPosition;
+            for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {
                 string qca = "";
-                if (userQuestionsArray[i].Contains('*'))
+                if (userQnaArray[arrayPosition].Contains('*'))
                 {
-                    userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
-                    qca = userQuestionsArray[i];
+                    userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
+                    qca = userQnaArray[arrayPosition];
                     Console.WriteLine($"{qca}");
                     corAnQ.Add(qca);                   
                 }
