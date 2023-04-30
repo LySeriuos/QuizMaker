@@ -58,9 +58,7 @@ namespace QuizMaker
                 if (userQuestionsArray[i].Contains('*'))
                 {
                     userQuestionsArray[i] = userQuestionsArray[i].Trim('*');
-
                     qca = userQuestionsArray[i];
-
                     Console.WriteLine($"{qca}");
                     corAnQ.Add(qca);                   
                 }

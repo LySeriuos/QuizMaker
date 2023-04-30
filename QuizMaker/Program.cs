@@ -53,20 +53,9 @@ namespace QuizMaker
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers();
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-                    uQnA.CorrectAnswers = correctAnswers;
-                   
+                    uQnA.CorrectAnswers = correctAnswers;                   
                     qNaList.Add(uQnA);
 
-                  //  IEnumerable<UserCorrectQuestionAndAnswers> answers = correctAnswers.AsEnumerable();
-                  //  string gogo = answers.ToString();
-                    
-                    //Console.WriteLine(correctAnswers);
-
-                    //for (int i = 0; i < correctAnswers.Count; i++)
-                    //{
-                    //    //printing objects in the Correct Answers list.
-                    //    Console.WriteLine($"{correctAnswers[i]}");
-                    //}
                     Data.SaveQnAListToXml(qNaList, path);
 
                 } while (userQuestions.Length > 0);

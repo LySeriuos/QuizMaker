@@ -14,8 +14,7 @@ namespace QuizMaker
             using (FileStream file = File.Create(path))
             {
                 XmlSerializer.Serialize(file, qNaList);
-            }
-            
+            }            
         }
         public static List<UserQuestionsAndAnswers> GetQnAListToXml(string path)
         {
@@ -26,8 +25,6 @@ namespace QuizMaker
                 qNaList = XmlSerializer.Deserialize(file) as List<UserQuestionsAndAnswers>;
                 return qNaList;
             }
-
         }
-
     }
 }
