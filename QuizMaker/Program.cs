@@ -17,14 +17,18 @@ namespace QuizMaker
         {
 
             string path = @"C:\Temp\UserQuestionsAndAnswers.xml"; //TODO: look at relative paths
-            //GameMode selection = UI.SelectGameMode();
+            // aski this
+            GameMode selection = (GameMode)UI.SelectGameMode();
 
-            //switch(selection)
-            //{
-            //    case GameMode.AddQuestions: //add questions
-            //        break;
-            //        //etc.
-            //}
+            switch (selection)
+            {
+                case GameMode.AddQuestions: //add questions
+                    break;
+
+
+                case GameMode.PlayGame:
+                    break;
+            }
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
 
@@ -53,7 +57,7 @@ namespace QuizMaker
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers();
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-                    uQnA.CorrectAnswers = correctAnswers;                   
+                    uQnA.CorrectAnswers = correctAnswers;
                     qNaList.Add(uQnA);
 
                     Data.SaveQnAListToXml(qNaList, path);

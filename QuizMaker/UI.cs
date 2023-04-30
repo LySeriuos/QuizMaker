@@ -17,13 +17,23 @@ namespace QuizMaker
             Console.WriteLine("Type “finish” in the console to finish adding questions with answers.");
             Console.WriteLine("Type “start” to begin Quiz game or exit to quit it!");
         }
+
+        public static int SelectGameMode()
+        {
+            Console.WriteLine("Please make your selection");
+            Console.WriteLine("0 Add Questions");
+            Console.WriteLine("1 Play Game");
+            int Selection = int.Parse(Console.ReadLine());
+            return Selection;
+        }
+
         public static string GetTheUsersQuestionsAndAnswers()
         {
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
             string userQuestion = Console.ReadLine();
             return userQuestion;
-        }        
+        }
 
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
@@ -32,7 +42,7 @@ namespace QuizMaker
             string[] userQnaArray = userQna.Split(" | ");
             // magic numbers
             for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
-            {                
+            {
                 userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
                 //Console.WriteLine(userQnaArray[i]);
             }
@@ -46,8 +56,8 @@ namespace QuizMaker
             return qna;
         }
 
-        public static List <string> ParseCorrectAnswers(string userQna)
-        {            
+        public static List<string> ParseCorrectAnswers(string userQna)
+        {
             List<string> corAnQ = new List<string>();
             string[] userQnaArray = userQna.Split(" | ");
             // magic number
@@ -60,7 +70,7 @@ namespace QuizMaker
                     userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
                     qca = userQnaArray[arrayPosition];
                     Console.WriteLine($"{qca}");
-                    corAnQ.Add(qca);                   
+                    corAnQ.Add(qca);
                 }
             }
             return corAnQ;
