@@ -4,6 +4,9 @@ using System.Xml.Linq;
 using static QuizMaker.Data;
 using static QuizMaker.UI;
 using System.IO;
+using System;
+using System.Linq;
+using System.Collections;
 
 namespace QuizMaker
 {
@@ -24,11 +27,10 @@ namespace QuizMaker
             //}
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
-            List<UserCorrectQuestionAndAnswers> corAnQ = new List<UserCorrectQuestionAndAnswers>();
+
             //1. Create data, UI and logic classes.
 
             UI.PrintTheCreatingQuestionsRools();
-
             //2. Get the questions and answers from the user and add them to Objects array.
 
             string userQuestions;
@@ -50,36 +52,26 @@ namespace QuizMaker
                 {
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers();
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
-                    //UserCorrectQuestionAndAnswers uCorAnsw = UI.ParseCorrectAnswerAndQuestion(userQuestions);
-
-                    
+                    List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
+                    uQnA.CorrectAnswers = correctAnswers;
+                   
                     qNaList.Add(uQnA);
 
-                    //qNaList.AddRange(corAnQ);
-                    List<UserCorrectQuestionAndAnswers> corAnQQ = UI.ParseCorrectAnswerAndQuestion(userQuestions);
+                  //  IEnumerable<UserCorrectQuestionAndAnswers> answers = correctAnswers.AsEnumerable();
+                  //  string gogo = answers.ToString();
                     
-                   
+                    //Console.WriteLine(correctAnswers);
 
-                    for (int i = 0; i < corAnQQ.Count; i++)
-                    {
-
-                        Console.WriteLine($"{corAnQQ[i]}galutinis");
-                    }
-
-                    //qNaList.AddRange(corAnQQ);
-
-
+                    //for (int i = 0; i < correctAnswers.Count; i++)
+                    //{
+                    //    //printing objects in the Correct Answers list.
+                    //    Console.WriteLine($"{correctAnswers[i]}");
+                    //}
                     Data.SaveQnAListToXml(qNaList, path);
 
                 } while (userQuestions.Length > 0);
             }
         }
-
-
-
-
-
-
 
         //3. Push array to txt file.
         // Create a list and add questions with answers to that list

@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace QuizMaker
@@ -6,7 +7,7 @@ namespace QuizMaker
 
     public class Data
     {
-        public static void SaveQnAListToXml(List<UserQuestionsAndAnswers> qNaList,string path)
+        public static void SaveQnAListToXml(List<UserQuestionsAndAnswers> qNaList, string path)
         {
         //    var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
             XmlSerializer XmlSerializer = new XmlSerializer(typeof(List<UserQuestionsAndAnswers>));

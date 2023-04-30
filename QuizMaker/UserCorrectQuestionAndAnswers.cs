@@ -10,9 +10,9 @@ namespace QuizMaker
     {
         public string CorrectAnswer;
 
-        public override string ToString()
-        {
-            return $"\nCorrect Answer:{CorrectAnswer}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"\nCorrect Answer:{CorrectAnswer}";
+        //}
     }
 }
