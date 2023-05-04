@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using static QuizMaker.Data;
 
@@ -41,13 +42,31 @@ namespace QuizMaker
             }
         }
 
-        public static string GetTheUsersQuestionsAndAnswers()
+        public static string GetTheUsersQuestionsAndAnswers(List<UserQuestionsAndAnswers> qNaList, string path)
         {
+            if (File.Exists(path))
+            {
+                qNaList = Data.GetQnAListToXml(path);
+
+                for (int i = 0; i < qNaList.Count; i++)
+                {
+                    Console.WriteLine(qNaList[i]);
+                }
+            }
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
             string userQuestion = Console.ReadLine();
             return userQuestion;
         }
+
+        //public static string UpdateUserQuestions(List<UserQuestionsAndAnswers> qNaList, string path)
+        //{
+        //    qNaList = Data.GetQnAListToXml(path);
+        //    Console.WriteLine("Write your questions with the answers!");
+        //    string userQuestion = Console.ReadLine();
+        //    return userQuestion;
+
+        //}
 
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {

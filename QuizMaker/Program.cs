@@ -7,6 +7,7 @@ using System.IO;
 using System;
 using System.Linq;
 using System.Collections;
+using System.Linq.Expressions;
 
 namespace QuizMaker
 {
@@ -40,29 +41,31 @@ namespace QuizMaker
             //2. Get the questions and answers from the user and add them to Objects array.
 
             string userQuestions;
-            if (File.Exists(path))
+
+
+            do
             {
-                qNaList = Data.GetQnAListToXml(path);
-               
-                //for (int i = 0; i < qNaList.Count; i++)
-                //{
-                //    Console.WriteLine(qNaList[i]);
-                //}
-            }
-            else
-            {
-                do
+                userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
+                UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+                List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
+
+                if (selection == GameMode.AddQuestions)
                 {
-                    userQuestions = UI.GetTheUsersQuestionsAndAnswers();
-                    UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
-                    List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
+                    qNaList = Data.GetQnAListToXml(path);
+                    GetTheUsersQuestionsAndAnswers(qNaList, path);
+                    
                     uQnA.CorrectAnswers = correctAnswers;
                     qNaList.Add(uQnA);
 
                     Data.SaveQnAListToXml(qNaList, path);
+                }
+                else if(selection == GameMode.PlayGame)
+                {
+                    //play game 
+                }
 
-                } while (userQuestions.Length > 0);
-            }
+            } while (userQuestions.Length > 0);
+
         }
 
         //3. Push array to txt file.
