@@ -34,34 +34,41 @@ namespace QuizMaker
             }
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
+            string userQuestions;
 
             //1. Create data, UI and logic classes.
 
             UI.PrintTheCreatingQuestionsRools();
             //2. Get the questions and answers from the user and add them to Objects array.
 
-            string userQuestions;
-
-
             do
             {
                 userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
+
                 UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                 List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-
-                if (selection == GameMode.AddQuestions)
+                if (userQuestions != null)
                 {
-                    qNaList = Data.GetQnAListToXml(path);
-                    GetTheUsersQuestionsAndAnswers(qNaList, path);
-                    
                     uQnA.CorrectAnswers = correctAnswers;
                     qNaList.Add(uQnA);
-
                     Data.SaveQnAListToXml(qNaList, path);
                 }
-                else if(selection == GameMode.PlayGame)
+                else if (selection == GameMode.AddQuestions)
                 {
-                    //play game 
+                    qNaList = Data.GetQnAListToXml(path);
+
+                    uQnA.CorrectAnswers = correctAnswers;
+                    qNaList.Add(uQnA);
+                    Data.SaveQnAListToXml(qNaList, path);
+                }
+
+                else if (selection == GameMode.PlayGame)
+                {
+                    //play game
+                }
+                else
+                {
+                    Console.WriteLine("Some error!");
                 }
 
             } while (userQuestions.Length > 0);
