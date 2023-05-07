@@ -50,27 +50,26 @@ namespace QuizMaker
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-                    if (!File.Exists(path))
-                    {
-                        uQnA.CorrectAnswers = correctAnswers;
-                        qNaList.Add(uQnA);
-                        Data.SaveQnAListToXml(qNaList, path);
-                    }
-                    else
-                    {
-                        qNaList = Data.GetQnAListToXml(path);
-                        uQnA.CorrectAnswers = correctAnswers;
-                        qNaList.Add(uQnA);
-                        Data.SaveQnAListToXml(qNaList, path);
-                    }
+
+                    qNaList = Data.GetQnAListToXml(path);
+
+
+                    uQnA.CorrectAnswers = correctAnswers;
+                    qNaList.Add(uQnA);
+                    Data.SaveQnAListToXml(qNaList, path);
+
+
+
 
                 } while (userQuestions.Length > 0);
             }
 
-            if(selection == GameMode.PlayGame) 
+            if (selection == GameMode.PlayGame)
             {
                 string randomQuestion = QuizCard.GetRandomQuestion(path);
                 Console.WriteLine(randomQuestion);
+                string userAnswer = Console.ReadLine();
+                Console.WriteLine(userAnswer);
             }
 
 
