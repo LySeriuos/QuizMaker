@@ -48,10 +48,11 @@ namespace QuizMaker
             {
                 qNaList = Data.GetQnAListToXml(path);
 
-                for (int i = 0; i < qNaList.Count; i++)
-                {
-                    Console.WriteLine(qNaList[i]);
-                }
+                //for (int i = 0; i < qNaList.Count; i++)
+                //{
+                //    Console.WriteLine(qNaList[i]);
+                //}
+                
             }
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");

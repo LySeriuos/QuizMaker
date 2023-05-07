@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace QuizMaker
 {
@@ -41,37 +42,37 @@ namespace QuizMaker
             UI.PrintTheCreatingQuestionsRools();
             //2. Get the questions and answers from the user and add them to Objects array.
 
-            do
+
+            if (selection == GameMode.AddQuestions)
             {
-                userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
-
-                UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
-                List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-                if (userQuestions != null)
+                do
                 {
-                    uQnA.CorrectAnswers = correctAnswers;
-                    qNaList.Add(uQnA);
-                    Data.SaveQnAListToXml(qNaList, path);
-                }
-                else if (selection == GameMode.AddQuestions)
-                {
-                    qNaList = Data.GetQnAListToXml(path);
+                    userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
+                    UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+                    List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
+                    if (!File.Exists(path))
+                    {
+                        uQnA.CorrectAnswers = correctAnswers;
+                        qNaList.Add(uQnA);
+                        Data.SaveQnAListToXml(qNaList, path);
 
-                    uQnA.CorrectAnswers = correctAnswers;
-                    qNaList.Add(uQnA);
-                    Data.SaveQnAListToXml(qNaList, path);
-                }
+                        //for (int i = 0; i < qNaList.Count; i++)
+                        //{
+                        //    Console.WriteLine(qNaList[i]);
+                        //}
 
-                else if (selection == GameMode.PlayGame)
-                {
-                    //play game
-                }
-                else
-                {
-                    Console.WriteLine("Some error!");
-                }
+                    }
+                    else
+                    {
+                        qNaList = Data.GetQnAListToXml(path);
+                        uQnA.CorrectAnswers = correctAnswers;
+                        qNaList.Add(uQnA);
+                        Data.SaveQnAListToXml(qNaList, path);
+                    }
 
-            } while (userQuestions.Length > 0);
+                } while (userQuestions.Length > 0);
+            }
+
 
         }
 
