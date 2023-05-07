@@ -55,12 +55,6 @@ namespace QuizMaker
                         uQnA.CorrectAnswers = correctAnswers;
                         qNaList.Add(uQnA);
                         Data.SaveQnAListToXml(qNaList, path);
-
-                        //for (int i = 0; i < qNaList.Count; i++)
-                        //{
-                        //    Console.WriteLine(qNaList[i]);
-                        //}
-
                     }
                     else
                     {
@@ -71,6 +65,12 @@ namespace QuizMaker
                     }
 
                 } while (userQuestions.Length > 0);
+            }
+
+            if(selection == GameMode.PlayGame) 
+            {
+                string randomQuestion = QuizCard.GetRandomQuestion(path);
+                Console.WriteLine(randomQuestion);
             }
 
 
