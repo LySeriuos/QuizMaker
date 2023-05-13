@@ -1,19 +1,12 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QuizMaker
 {
-    internal class QuizCard
+    internal class QuizCard1
     {
-        public static string GetRandomQuestion(string path)
-        {
-            var random = new Random();
-            UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
-            List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);
-            int index = random.Next(qNaList.Count);
-            qna = qNaList[index];
-            return qna.ToString();
-        }
     }
 }
