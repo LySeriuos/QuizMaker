@@ -15,9 +15,12 @@ namespace QuizMaker
         public string AnswerFour { get; set; }
         // add the list wth the variable from another class
         public List <string> CorrectAnswers = new List <string>();
-        public override string ToString()
-        {
-            return $"Question: {Question} \nA: {AnswerOne} \tB: {AnswerTwo} \nC: {AnswerThree} \tD: {AnswerFour}";
-        }
+        //override ToString is only for debugging 
+        //public override string ToString()
+        //{
+        //    return $"Question: {Question} \nA: {AnswerOne} \tB: {AnswerTwo} \nC: {AnswerThree} \tD: {AnswerFour}";
+        //}
+
+
     }
 }

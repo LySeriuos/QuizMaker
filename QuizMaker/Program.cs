@@ -62,14 +62,14 @@ namespace QuizMaker
             if (selection == GameMode.PlayGame)
             {
                 
-                UserQuestionsAndAnswers randomQuestion = QuizCard.GetRandomQuestion(path);
-                Console.WriteLine(randomQuestion);
+                UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
+                QuizCard.GetTheListToString(randomQuestion);
+                
                 string userAnswer = Console.ReadLine();
                 Console.WriteLine(userAnswer);
-                for (int i = 0; i < qNalist.Count; i++)
-                {
-                    Console.WriteLine(months[i]);
-                }
+                
+
+
             }
 
 

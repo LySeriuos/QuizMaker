@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuizMaker
 {
-    internal class QuizCard1
+    internal class QuizCard
     {
+        public static void GetTheListToString(UserQuestionsAndAnswers randomQuestion)
+        {       string question = randomQuestion.Question;
+                string answerOne = randomQuestion.AnswerOne;
+                string answerTwo = randomQuestion.AnswerTwo;
+                string answerThree = randomQuestion.AnswerThree;
+                string answerFour = randomQuestion.AnswerFour;
+                Console.WriteLine($"Question: {question} \nA: {answerOne} \tB: {answerTwo} \nC: {answerThree} \tD: {answerFour}");
+        }
+
     }
 }
+
+

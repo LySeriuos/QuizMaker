@@ -8,7 +8,7 @@
             UserQuestionsAndAnswers questionsForUser = new UserQuestionsAndAnswers();
             List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);
             int index = random.Next(qNaList.Count);
-            questionsForUser = qNaList[index];
+            questionsForUser = qNaList[index];            
             return questionsForUser;
         }
     }
