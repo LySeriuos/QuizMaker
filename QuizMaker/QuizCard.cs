@@ -17,7 +17,6 @@ namespace QuizMaker
                 string answerFour = randomQuestion.AnswerFour;
                 Console.WriteLine($"\nQuestion: {question} \n\nA: {answerOne} \nB: {answerTwo} \nC: {answerThree} \nD: {answerFour}");
         }
-
     }
 }
 

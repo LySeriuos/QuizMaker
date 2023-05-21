@@ -61,15 +61,12 @@ namespace QuizMaker
 
             if (selection == GameMode.PlayGame)
             {
-                
+                // getting random question from the list
                 UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
-                QuizCard.GetTheListToString(randomQuestion);
-                
+                // printing out random question and asnwers to the user
+                QuizCard.GetTheListToString(randomQuestion);                
                 string userAnswer = Console.ReadLine();
                 Console.WriteLine(userAnswer);
-                
-
-
             }
 
 
