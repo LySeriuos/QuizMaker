@@ -29,14 +29,14 @@ namespace QuizMaker
             Console.WriteLine("0 Add Questions");
             Console.WriteLine("1 Play Game");
             int Selection = int.Parse(Console.ReadLine());
-            switch(Selection)
+            switch (Selection)
             {
                 case 0:
                     return GameMode.AddQuestions;
-                
+
                 case 1:
                     return GameMode.PlayGame;
-             
+
                 default:
                     return GameMode.INVALID;
             }
@@ -52,7 +52,7 @@ namespace QuizMaker
                 //{
                 //    Console.WriteLine(qNaList[i]);
                 //}
-                
+
             }
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
@@ -72,7 +72,7 @@ namespace QuizMaker
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
             UserQuestionsAndAnswers qna = new UserQuestionsAndAnswers();
-          //  int arrayPosition;
+            //  int arrayPosition;
             string[] userQnaArray = userQna.Split(" | ");
             // magic numbers
             for (int arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
@@ -108,6 +108,24 @@ namespace QuizMaker
                 }
             }
             return corAnQ;
+        }
+
+        public static void CheckCorrectAnswer(string userAnswer, UserQuestionsAndAnswers randomQuestion, int userPoints)
+        {
+            List<string> correctAnswer = randomQuestion.CorrectAnswers;
+            
+            for (int i = 0; i < correctAnswer.Count; i++)
+            {                
+                if (correctAnswer[i] == userAnswer)
+                {
+                    Console.WriteLine("Answer is correct!");
+                    userPoints++;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong answer");
+                }                
+            }
         }
     }
 }

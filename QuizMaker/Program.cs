@@ -36,6 +36,8 @@ namespace QuizMaker
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string userQuestions;
+            // this must be moved to separate method which going to count all the points
+            int userPoints = 0;
 
             //1. Create data, UI and logic classes.
 
@@ -65,9 +67,9 @@ namespace QuizMaker
                 UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
                 // printing out random question and asnwers to the user
                 QuizCard.GetTheListToString(randomQuestion);
-                QuizCard.GetCorrectAnswer(randomQuestion);
                 string userAnswer = Console.ReadLine();
                 Console.WriteLine(userAnswer);
+                UI.CheckCorrectAnswer(userAnswer, randomQuestion, userPoints);
             }
 
 
