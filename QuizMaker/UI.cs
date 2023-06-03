@@ -145,21 +145,25 @@ namespace QuizMaker
                     {
                         chosedUserAnswer = randomQuestion.AnswerOne;
                         Console.WriteLine(chosedUserAnswer);
+                        break;
                     }
                     else if (chosedUserAnswer == "B")
                     {
                         chosedUserAnswer = randomQuestion.AnswerTwo;
                         Console.WriteLine(chosedUserAnswer);
+                        break;
                     }
                     else if (chosedUserAnswer == "C")
                     {
                         chosedUserAnswer = randomQuestion.AnswerThree;
                         Console.WriteLine(chosedUserAnswer);
+                        break;
                     }
                     else if (chosedUserAnswer == "D")
                     {
                         chosedUserAnswer = randomQuestion.AnswerFour;
                         Console.WriteLine(chosedUserAnswer);
+                        break;
                     }
                     else
                     {
