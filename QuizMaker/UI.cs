@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -114,6 +115,7 @@ namespace QuizMaker
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
             
+            
             for (int i = 0; i < correctAnswer.Count; i++)
             {                
                 if (correctAnswer[i] == userAnswer)
@@ -126,6 +128,46 @@ namespace QuizMaker
                     Console.WriteLine("Wrong answer");
                 }                
             }
+        }
+
+        public static void GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        {
+            // spliting user input for multiple answers
+            string[] userInputArray = userAnswer.Split(",");
+            string chosedUserAnswer;
+            for (int i = 0; i < userInputArray.Length; i++)
+            {
+                chosedUserAnswer = userInputArray[i];
+                Console.WriteLine(chosedUserAnswer);
+                foreach (string input in userInputArray)
+                {
+                    if (chosedUserAnswer == "A")
+                    {
+                        chosedUserAnswer = randomQuestion.AnswerOne;
+                        Console.WriteLine(chosedUserAnswer);
+                    }
+                    else if (chosedUserAnswer == "B")
+                    {
+                        chosedUserAnswer = randomQuestion.AnswerTwo;
+                        Console.WriteLine(chosedUserAnswer);
+                    }
+                    else if (chosedUserAnswer == "C")
+                    {
+                        chosedUserAnswer = randomQuestion.AnswerThree;
+                        Console.WriteLine(chosedUserAnswer);
+                    }
+                    else if (chosedUserAnswer == "D")
+                    {
+                        chosedUserAnswer = randomQuestion.AnswerFour;
+                        Console.WriteLine(chosedUserAnswer);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong Selection");
+                    }
+                }
+            }
+            
         }
     }
 }

@@ -67,7 +67,8 @@ namespace QuizMaker
                 UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
                 // printing out random question and asnwers to the user
                 QuizCard.GetTheListToString(randomQuestion);
-                string userAnswer = Console.ReadLine();
+                string userAnswer = Console.ReadLine().ToUpper();
+                UI.GetUserAnswerOption(userAnswer, randomQuestion);
                 Console.WriteLine(userAnswer);
                 UI.CheckCorrectAnswer(userAnswer, randomQuestion, userPoints);
             }
