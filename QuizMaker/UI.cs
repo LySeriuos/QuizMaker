@@ -114,22 +114,51 @@ namespace QuizMaker
         public static void CheckCorrectAnswer(string userAnswer, UserQuestionsAndAnswers randomQuestion, int userPoints, List<string> userAnswerList)
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
-
+            int numberOfCorrectAnswers = 0;
+            string theCorrectAnswer = "";
+            int answerIndex = 0;
             for (int userAnswerListIndex = 0; userAnswerListIndex < userAnswerList.Count; userAnswerListIndex++)
             {
                 for (int correctAnswerListIndex = 0; correctAnswerListIndex < correctAnswer.Count; correctAnswerListIndex++)
                 {
                     if (correctAnswer[correctAnswerListIndex] == userAnswerList[userAnswerListIndex])
                     {
-                        Console.WriteLine($"Answer is correct! It is {correctAnswer[correctAnswerListIndex]}");
-                        userPoints++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Wrong answer");
+                        numberOfCorrectAnswers++;
+                        theCorrectAnswer = correctAnswer[correctAnswerListIndex];
+                        answerIndex = correctAnswerListIndex;
+                        Console.WriteLine(answerIndex);
+                        Console.WriteLine(correctAnswer[correctAnswerListIndex]);
+                        break;
                     }
                 }
             }
+            if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 1)
+            {
+                Console.WriteLine($"One answer of two is good {theCorrectAnswer}");
+            }
+            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count > 1)
+            {
+                Console.WriteLine($"Two answers is good {correctAnswer[0]} + {correctAnswer[1]}");
+            }
+            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 2)
+            {
+                Console.WriteLine($"One answer of two is good {theCorrectAnswer}");
+            }
+            else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 2)
+            {
+                Console.WriteLine("Wrong both answers!");
+            }
+            else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 1)
+            {
+                Console.WriteLine("Wrong answer!");
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+
+
+
         }
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
