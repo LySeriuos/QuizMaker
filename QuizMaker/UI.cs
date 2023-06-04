@@ -114,10 +114,10 @@ namespace QuizMaker
         public static void CheckCorrectAnswer(string userAnswer, UserQuestionsAndAnswers randomQuestion, int userPoints)
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
-            
-            
+
+
             for (int i = 0; i < correctAnswer.Count; i++)
-            {                
+            {
                 if (correctAnswer[i] == userAnswer)
                 {
                     Console.WriteLine("Answer is correct!");
@@ -126,15 +126,16 @@ namespace QuizMaker
                 else
                 {
                     Console.WriteLine("Wrong answer");
-                }                
+                }
             }
         }
 
-        public static void GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
             // spliting user input for multiple answers
             string[] userInputArray = userAnswer.Split(",");
-            string chosedUserAnswer;
+            List<string> strings = new List<string>();
+            string chosedUserAnswer = "";
             for (int i = 0; i < userInputArray.Length; i++)
             {
                 chosedUserAnswer = userInputArray[i];
@@ -144,24 +145,28 @@ namespace QuizMaker
                     if (chosedUserAnswer == "A")
                     {
                         chosedUserAnswer = randomQuestion.AnswerOne;
+                        strings.Add(chosedUserAnswer);
                         Console.WriteLine(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "B")
                     {
                         chosedUserAnswer = randomQuestion.AnswerTwo;
+                        strings.Add(chosedUserAnswer);
                         Console.WriteLine(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "C")
                     {
                         chosedUserAnswer = randomQuestion.AnswerThree;
+                        strings.Add(chosedUserAnswer);
                         Console.WriteLine(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "D")
                     {
                         chosedUserAnswer = randomQuestion.AnswerFour;
+                        strings.Add(chosedUserAnswer);
                         Console.WriteLine(chosedUserAnswer);
                         break;
                     }
@@ -171,7 +176,7 @@ namespace QuizMaker
                     }
                 }
             }
-            
+            return strings;
         }
     }
 }
