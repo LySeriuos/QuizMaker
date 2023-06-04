@@ -68,15 +68,8 @@ namespace QuizMaker
                 // printing out random question and asnwers to the user
                 QuizCard.GetTheListToString(randomQuestion);
                 string userAnswer = Console.ReadLine().ToUpper();
-                List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
-                
-                foreach (string input in userInputArray)
-                {
-                    Console.WriteLine(input);
-                }
-                
-                Console.WriteLine(userAnswer);
-                UI.CheckCorrectAnswer(userAnswer, randomQuestion, userPoints);
+                List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);    
+                UI.CheckCorrectAnswer(userAnswer, randomQuestion, userPoints, userInputArray);
             }
 
 

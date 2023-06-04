@@ -111,21 +111,23 @@ namespace QuizMaker
             return corAnQ;
         }
 
-        public static void CheckCorrectAnswer(string userAnswer, UserQuestionsAndAnswers randomQuestion, int userPoints)
+        public static void CheckCorrectAnswer(string userAnswer, UserQuestionsAndAnswers randomQuestion, int userPoints, List<string> userAnswerList)
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
 
-
-            for (int i = 0; i < correctAnswer.Count; i++)
+            for (int userAnswerListIndex = 0; userAnswerListIndex < userAnswerList.Count; userAnswerListIndex++)
             {
-                if (correctAnswer[i] == userAnswer)
+                for (int correctAnswerListIndex = 0; correctAnswerListIndex < correctAnswer.Count; correctAnswerListIndex++)
                 {
-                    Console.WriteLine("Answer is correct!");
-                    userPoints++;
-                }
-                else
-                {
-                    Console.WriteLine("Wrong answer");
+                    if (correctAnswer[correctAnswerListIndex] == userAnswerList[userAnswerListIndex])
+                    {
+                        Console.WriteLine($"Answer is correct! It is {correctAnswer[correctAnswerListIndex]}");
+                        userPoints++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong answer");
+                    }
                 }
             }
         }
@@ -134,8 +136,8 @@ namespace QuizMaker
         {
             // spliting user input for multiple answers
             string[] userInputArray = userAnswer.Split(",");
-            List<string> strings = new List<string>();
-            string chosedUserAnswer = "";
+            List<string> userAnswersList = new List<string>();
+            string chosedUserAnswer;
             for (int i = 0; i < userInputArray.Length; i++)
             {
                 chosedUserAnswer = userInputArray[i];
@@ -145,29 +147,25 @@ namespace QuizMaker
                     if (chosedUserAnswer == "A")
                     {
                         chosedUserAnswer = randomQuestion.AnswerOne;
-                        strings.Add(chosedUserAnswer);
-                        Console.WriteLine(chosedUserAnswer);
+                        userAnswersList.Add(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "B")
                     {
                         chosedUserAnswer = randomQuestion.AnswerTwo;
-                        strings.Add(chosedUserAnswer);
-                        Console.WriteLine(chosedUserAnswer);
+                        userAnswersList.Add(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "C")
                     {
                         chosedUserAnswer = randomQuestion.AnswerThree;
-                        strings.Add(chosedUserAnswer);
-                        Console.WriteLine(chosedUserAnswer);
+                        userAnswersList.Add(chosedUserAnswer);
                         break;
                     }
                     else if (chosedUserAnswer == "D")
                     {
                         chosedUserAnswer = randomQuestion.AnswerFour;
-                        strings.Add(chosedUserAnswer);
-                        Console.WriteLine(chosedUserAnswer);
+                        userAnswersList.Add(chosedUserAnswer);
                         break;
                     }
                     else
@@ -176,7 +174,7 @@ namespace QuizMaker
                     }
                 }
             }
-            return strings;
+            return userAnswersList;
         }
     }
 }
