@@ -107,8 +107,6 @@ namespace QuizMaker
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
             int numberOfCorrectAnswers = 0;
             string theCorrectAnswer = "";
-            int answerIndex;
-            List<int> answersIndexes = new List<int>();
             List<string> userCorrectAnswers = new List<string>();
             for (int userAnswerListIndex = 0; userAnswerListIndex < userAnswerList.Count; userAnswerListIndex++)
             {
@@ -116,13 +114,8 @@ namespace QuizMaker
                 {
                     if (correctAnswer[correctAnswerListIndex] == userAnswerList[userAnswerListIndex])
                     {
-                        numberOfCorrectAnswers++;
-                        theCorrectAnswer = correctAnswer[correctAnswerListIndex];
-                        answerIndex = correctAnswerListIndex;
+                        theCorrectAnswer = correctAnswer[correctAnswerListIndex];                        
                         userCorrectAnswers.Add(theCorrectAnswer);
-                        answersIndexes.Add(answerIndex);
-                        Console.WriteLine(answerIndex);
-                        //Console.WriteLine(correctAnswer[correctAnswerListIndex]);
                         break;
                     }
                 }
@@ -130,35 +123,23 @@ namespace QuizMaker
             return userCorrectAnswers;
         }
 
-        public static void PrintAnswerResponseToUser(UserQuestionsAndAnswers randomQuestion, List<string> userAnswerList, List<string> userCorrectAnswers)
+        public static void PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers)
         {
-
-            
             int numberOfCorrectAnswers = userCorrectAnswers.Count;
-
+            List<string> matchedCorrectAnswers = userCorrectAnswers;
             
-            foreach(string correctAnswer in userCorrectAnswers)
-            {
 
-                string theAnswer = correctAnswer;
-                int indexNumber = userAnswerList.FindIndex(a => a == theAnswer);
-                Console.WriteLine($"{theAnswer} + {indexNumber}");
-            }
             // after moving to separate method, use foreach in userCorrect answer and Count method to see how many correct answers it was.
             // use List<T>.FindIndex() to see what index has an userCorrectAnswer has in List<string> correctAnswer = randomQuestion.CorrectAnswers;
             // move this to other method
             if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 1)
             {
-                Console.WriteLine($"One answer of two is good {theCorrectAnswer}");
+                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
             }
             else if (numberOfCorrectAnswers == 2 && userAnswerList.Count > 1)
-            {   
-                // this is incorrect because the right answers could be in other indexes
-                Console.WriteLine($"Two answers is good {correctAnswer[0]} + {correctAnswer[1]}");
-            }
-            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 2)
             {
-                Console.WriteLine($"One answer of two is good {theCorrectAnswer}");
+                // this is incorrect because the right answers could be in other indexes
+                Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
             else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 2)
             {
@@ -183,7 +164,7 @@ namespace QuizMaker
             for (int i = 0; i < userInputArray.Length; i++)
             {
                 chosedUserAnswer = userInputArray[i];
-                Console.WriteLine(chosedUserAnswer);
+                //Console.WriteLine(chosedUserAnswer);
                 foreach (string input in userInputArray)
                 {
                     if (chosedUserAnswer == "A")

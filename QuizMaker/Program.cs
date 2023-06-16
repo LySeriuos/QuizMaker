@@ -69,8 +69,8 @@ namespace QuizMaker
                 QuizCard.GetTheListToString(randomQuestion);
                 string userAnswer = Console.ReadLine().ToUpper();
                 List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);    
-                UI.GetMatchedCorrectAnswer(userAnswer, randomQuestion, userPoints, userInputArray);
-                UI.PrintAnswerResponseToUser(userAnswer, randomQuestion, userPoints, userInputArray);
+                List<string> userCorrectAnswers = UI.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
+                UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
             }
 
 
