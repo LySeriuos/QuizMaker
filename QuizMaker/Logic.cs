@@ -11,6 +11,26 @@
             questionsForUser = qNaList[index];            
             return questionsForUser;
         }
-        
+
+        public static List<string> GetMatchedCorrectAnswer(UserQuestionsAndAnswers randomQuestion, List<string> userAnswerList)
+        {
+            List<string> correctAnswer = randomQuestion.CorrectAnswers;
+            string theCorrectAnswer = "";
+            List<string> userCorrectAnswers = new List<string>();
+            for (int userAnswerListIndex = 0; userAnswerListIndex < userAnswerList.Count; userAnswerListIndex++)
+            {
+                for (int correctAnswerListIndex = 0; correctAnswerListIndex < correctAnswer.Count; correctAnswerListIndex++)
+                {
+                    if (correctAnswer[correctAnswerListIndex] == userAnswerList[userAnswerListIndex])
+                    {
+                        theCorrectAnswer = correctAnswer[correctAnswerListIndex];
+                        userCorrectAnswers.Add(theCorrectAnswer);
+                        break;
+                    }
+                }
+            }
+            return userCorrectAnswers;
+        }
+
     }
 }
