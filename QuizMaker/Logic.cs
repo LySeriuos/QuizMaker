@@ -8,7 +8,7 @@
             UserQuestionsAndAnswers questionsForUser = new UserQuestionsAndAnswers();
             List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);
             int index = random.Next(qNaList.Count);
-            questionsForUser = qNaList[index];            
+            questionsForUser = qNaList[index];
             return questionsForUser;
         }
 
@@ -30,6 +30,21 @@
                 }
             }
             return userCorrectAnswers;
+        }
+
+        public static void AddingPoints(int points, List<int>userPointsList)
+        {
+            // add to list and then print total
+            int userPoints = points;
+            userPointsList.Add(userPoints);
+            if(userPointsList.Sum() < 0) 
+            {
+                userPoints = 0;
+                Console.WriteLine($"Your current score is {userPoints}  ");
+            } 
+            else {
+                Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
+            }
         }
 
     }

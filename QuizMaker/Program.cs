@@ -63,6 +63,7 @@ namespace QuizMaker
 
             if (selection == GameMode.PlayGame)
             {
+                List<int> userPointsList = new List<int>();
                 string userAnswer;
                 do
                 {
@@ -72,12 +73,11 @@ namespace QuizMaker
                     QuizCard.GetTheListToString(randomQuestion);
                     userAnswer = Console.ReadLine().ToUpper();
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
-                    List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
-                    UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
+                    List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);                    
+                    int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
+                    Logic.AddingPoints(points, userPointsList);
                 } while (userAnswer != "");
-                }
-
-
+            }
         }
 
         //3. Push array to txt file.

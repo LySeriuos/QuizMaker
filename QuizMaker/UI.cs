@@ -102,30 +102,36 @@ namespace QuizMaker
             return corAnQ;
         }
 
-        public static void PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers)
+        public static int PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers)
         {
             int numberOfCorrectAnswers = userCorrectAnswers.Count;
+            int points = 0;
             List<string> matchedCorrectAnswers = userCorrectAnswers;
             if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 1)
             {
-                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
+                points =+ 1;
+                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");                
             }
             else if (numberOfCorrectAnswers == 2 && userAnswerList.Count > 1)
             {                
                 Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
+                points =+ 2;
             }
             else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 2)
             {
                 Console.WriteLine("Wrong both answers!");
+                points =- 2;
             }
             else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Wrong answer!");
+                points =- 1;
             }
             else
             {
                 Console.WriteLine("Error");
             }
+            return points;
         }
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
