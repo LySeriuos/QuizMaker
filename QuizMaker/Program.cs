@@ -75,7 +75,7 @@ namespace QuizMaker
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);                    
                     int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
-                    Logic.AddingPoints(points, userPointsList);
+                    UI.AddingPoints(points, userPointsList);
                 } while (userAnswer != "");
             }
         }
