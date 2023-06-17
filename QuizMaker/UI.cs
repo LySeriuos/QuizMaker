@@ -16,8 +16,16 @@ namespace QuizMaker
             Console.WriteLine("Mark correct answer with the star symbol.If there is more than one correct answers add star symbols to all good answers.");
             Console.WriteLine("Here is example:");
             Console.WriteLine("“What color is the sky? | red | blue* | green”.");
-            Console.WriteLine("Type “finish” in the console to finish adding questions with answers.");
-            Console.WriteLine("Type “start” to begin Quiz game or exit to quit it!");
+        }
+
+        public static void GamePlayRools()
+        {
+            Console.WriteLine("You will get random question with 4 options to choose from");
+            Console.WriteLine("Read question carefully, some questions has two answers");
+            Console.WriteLine("To put answer you need to write A,B,C or D");
+            Console.WriteLine("If there is more than one correct answers you should separate it by “,” As example c,d");
+            Console.WriteLine("You will get points for each correct answer");
+            Console.WriteLine("Good luck");
         }
         public static bool Continue()
         {

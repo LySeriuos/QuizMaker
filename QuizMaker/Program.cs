@@ -16,7 +16,6 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-
             string path = @"C:\Temp\UserQuestionsAndAnswers.xml"; //TODO: look at relative paths
             // ask this
             GameMode selection = UI.SelectGameMode();
@@ -36,19 +35,13 @@ namespace QuizMaker
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string userQuestions;
-            // this must be moved to separate method which going to count all the points
-            int userPoints = 0;
-
-            //1. Create data, UI and logic classes.
-
             UI.PrintTheCreatingQuestionsRools();
-            //2. Get the questions and answers from the user and add them to Objects array.
-
 
             if (selection == GameMode.AddQuestions)
             {
                 do
                 {
+                    
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
@@ -63,10 +56,12 @@ namespace QuizMaker
 
             if (selection == GameMode.PlayGame)
             {
+                UI.GamePlayRools();
                 List<int> userPointsList = new List<int>();
                 string userAnswer;
                 do
                 {
+                    
                     // getting random question from the list
                     UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
                     // printing out random question and asnwers to the user
@@ -89,11 +84,6 @@ namespace QuizMaker
         //3. Push array to txt file.
         // Create a list and add questions with answers to that list
 
-
-
-
-
-
         // Spliting questions from answers
 
 
@@ -103,7 +93,5 @@ namespace QuizMaker
         //7. Add winning points if it was correct. Print it later at the end of the game.
         // Bonus:
         //8. Save players name and scores to the txt file and show the top score at the beggining of the game.
-
-
     }
 }
