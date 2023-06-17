@@ -72,6 +72,12 @@ namespace QuizMaker
                     // printing out random question and asnwers to the user
                     QuizCard.GetTheListToString(randomQuestion);
                     userAnswer = Console.ReadLine().ToUpper();
+                    char userLetter = userAnswer[0];
+                    if (!Char.IsLetter(userLetter))
+                    {
+                        Console.WriteLine("Wrong character used! Should be A,B,C or D");
+                        continue;
+                    }
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);                    
                     int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);

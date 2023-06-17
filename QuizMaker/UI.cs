@@ -109,27 +109,28 @@ namespace QuizMaker
             List<string> matchedCorrectAnswers = userCorrectAnswers;
             if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 1)
             {
-                points =+ 1;
-                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");                
+                points = +1;
+                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
             }
             else if (numberOfCorrectAnswers == 2 && userAnswerList.Count > 1)
             {
                 points = +2;
-                Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");                
+                Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
             else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 2)
             {
                 points = -2;
-                Console.WriteLine("Wrong both answers!");                
+                Console.WriteLine("Wrong both answers!");
             }
             else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 1)
             {
                 points = -1;
-                Console.WriteLine("Wrong answer!");                
+                Console.WriteLine("Wrong answer!");
             }
             else
             {
                 Console.WriteLine("Error");
+
             }
             return points;
         }
@@ -138,6 +139,7 @@ namespace QuizMaker
         {
             // spliting user input for multiple answers
             string[] userInputArray = userAnswer.Split(",");
+
             List<string> userAnswersList = new List<string>();
             string chosedUserAnswer;
             for (int i = 0; i < userInputArray.Length; i++)
@@ -171,10 +173,12 @@ namespace QuizMaker
                     }
                     else
                     {
-                        Console.WriteLine("Wrong Selection");
+                        break;
                     }
+
                 }
             }
+
             return userAnswersList;
         }
         public static void AddingPoints(int points, List<int> userPointsList)
