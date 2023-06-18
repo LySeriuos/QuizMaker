@@ -35,10 +35,11 @@ namespace QuizMaker
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string userQuestions;
-            UI.PrintTheCreatingQuestionsRools();
+            
 
             if (selection == GameMode.AddQuestions)
             {
+                UI.PrintTheCreatingQuestionsRools();
                 do
                 {
                     
@@ -59,6 +60,8 @@ namespace QuizMaker
                 UI.GamePlayRools();
                 List<int> userPointsList = new List<int>();
                 string userAnswer;
+                int questionsPlayed = 0;
+                int sumOfAllPoints = 0;
                 do
                 {
                     
@@ -76,8 +79,10 @@ namespace QuizMaker
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);                    
                     int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
-                    UI.AddingPoints(points, userPointsList);
-                } while (userAnswer != "");
+                    sumOfAllPoints = UI.AddingPoints(points, userPointsList);
+                    questionsPlayed++;
+                } while (questionsPlayed < 5);
+                Console.WriteLine($"After 20 questions you earned  so much points :{sumOfAllPoints}");
             }
         }
 

@@ -20,12 +20,12 @@ namespace QuizMaker
 
         public static void GamePlayRools()
         {
-            Console.WriteLine("You will get random question with 4 options to choose from");
-            Console.WriteLine("Read question carefully, some questions has two answers");
-            Console.WriteLine("To put answer you need to write A,B,C or D");
-            Console.WriteLine("If there is more than one correct answers you should separate it by “,” As example c,d");
-            Console.WriteLine("You will get points for each correct answer");
-            Console.WriteLine("Good luck");
+            Console.WriteLine("You will get random question with 4 options to choose from.");
+            Console.WriteLine("Read question carefully, some questions has two answers.");
+            Console.WriteLine("To put answer you need to write A,B,C or D.");
+            Console.WriteLine("If there is more than one correct answers you should separate it by “,” As example c,d.");
+            Console.WriteLine("You will get points for each correct answer, but for wrong answers it willl be taken.");
+            Console.WriteLine("Good luck!");
         }
         public static bool Continue()
         {
@@ -189,7 +189,7 @@ namespace QuizMaker
 
             return userAnswersList;
         }
-        public static void AddingPoints(int points, List<int> userPointsList)
+        public static int AddingPoints(int points, List<int> userPointsList)
         {
             // add to list and then print total
             int userPoints = points;
@@ -203,6 +203,7 @@ namespace QuizMaker
             {
                 Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
             }
+            return userPointsList.Sum();
         }
     }
 }
