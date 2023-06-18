@@ -81,8 +81,8 @@ namespace QuizMaker
                     int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
                     sumOfAllPoints = UI.AddingPoints(points, userPointsList);
                     questionsPlayed++;
-                } while (questionsPlayed < 5);
-                Console.WriteLine($"After 20 questions you earned  so much points :{sumOfAllPoints}");
+                } while (questionsPlayed < 20);
+                Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints} ");
             }
         }
 

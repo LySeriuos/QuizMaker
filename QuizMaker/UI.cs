@@ -115,23 +115,23 @@ namespace QuizMaker
             int numberOfCorrectAnswers = userCorrectAnswers.Count;
             int points = 0;
             List<string> matchedCorrectAnswers = userCorrectAnswers;
-            if (numberOfCorrectAnswers == 1 && userAnswerList.Count > 1)
+            if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 2)
             {
                 points = +1;
                 Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
             }
-            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count > 1)
+            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 2)
             {
                 points = +2;
                 Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
-            else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 2)
+            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 2)
             {
                 points = -2;
                 Console.WriteLine("Wrong both answers!");
             }
-            else if (numberOfCorrectAnswers < 1 && userAnswerList.Count == 1)
-            {
+            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 1)
+            {    
                 points = -1;
                 Console.WriteLine("Wrong answer!");
             }
@@ -194,15 +194,15 @@ namespace QuizMaker
             // add to list and then print total
             int userPoints = points;
             userPointsList.Add(userPoints);
-            if (userPointsList.Sum() < 0)
-            {
-                userPoints = 0;
-                Console.WriteLine($"Your current score is {userPoints}  ");
-            }
-            else
-            {
-                Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
-            }
+            //if (userPointsList.Sum() < 0)
+            //{
+            //    userPoints = 0;
+            //    Console.WriteLine($"Your current score is {userPoints}  ");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
+            //}
             return userPointsList.Sum();
         }
     }
