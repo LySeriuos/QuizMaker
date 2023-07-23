@@ -35,14 +35,15 @@ namespace QuizMaker
 
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string userQuestions;
-            
+
+
 
             if (selection == GameMode.AddQuestions)
             {
                 UI.PrintTheCreatingQuestionsRools();
                 do
                 {
-                    
+
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
@@ -59,27 +60,100 @@ namespace QuizMaker
             {
                 UI.GamePlayRools();
                 List<int> userPointsList = new List<int>();
-                string userAnswer;
+
                 int questionsPlayed = 0;
                 int sumOfAllPoints = 0;
                 do
                 {
-                    
+
                     // getting random question from the list
                     UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
                     // printing out random question and asnwers to the user
                     QuizCard.GetTheListToString(randomQuestion);
-                    userAnswer = Console.ReadLine().ToUpper();
-                    char userLetter = userAnswer[0];
-                    if (!Char.IsLetter(userLetter))
+                    string userAnswer = Console.ReadLine().ToUpper();
+                    int usrInpLength = userAnswer.Length;
+                    Console.Write(usrInpLength);
+                    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
+                    Console.Write(countedCorrAnsw);
+                    bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
+                    Console.WriteLine(mltplAnsw);
+                    bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
+                    Console.WriteLine(snglAnsw);
+                    bool sandwich = mltplAnsw || snglAnsw;
+                    Console.WriteLine(sandwich);
+                    bool usrInput;
+                    char charResult;
+                    
+                    while(!sandwich)
                     {
-                        Console.WriteLine("Wrong character used! Should be A,B,C or D");
-                        continue;
+
+                        Console.WriteLine("bad input, put nother one");
+                        userAnswer = Console.ReadLine().ToUpper();
+                        break;
+                        
                     }
+
+                    //if (char.TryParse(userAnswer, out charResult))
+                    //{
+                    //    Console.WriteLine($"Your age is: {charResult}");
+                    //}
+                    //else
+                    //{
+                    //    break;
+                    //}
+                    //bool parseSuccess = bool.TryParse(userAnswer, out usrInput);
+                    //if (parseSuccess)
+                    //{
+                    //    Console.WriteLine($"Your age is: {usrInput}");
+                    //    userAnswer = Console.ReadLine().ToUpper();
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("This is not a number!");
+                    //    continue;
+                    //}
+                    //int usrInpLength = userAnswer.Length;
+                    //int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
+                    
+                    //char userLetter = userAnswer[0];
+                    //while (string.IsNullOrEmpty(userAnswer))
+                    //{
+
+                    //    Console.WriteLine("Name can't be empty! Input your name once more");
+                    //    userAnswer = Console.ReadLine().ToUpper();
+
+                    //    //string checkedUserInput = GetCorrectUsrInput(userAnswer, randomQuestion);
+                    //    //Console.WriteLine(checkedUserInput);
+                    //}
+
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
-                    List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);                    
-                    int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers);
+
+                    //while (userAnswer.Length > 1)
+                    //{
+                    //    if (!Char.IsLetter(userLetter))
+                    //    {
+                    //        Console.WriteLine("Wrong character used! Should be A,B,C or D");
+                    //        userAnswer = Console.ReadLine().ToUpper();
+                    //        continue;
+                    //    }
+                    //    else if (userInputArray.Count() < randomQuestion.CorrectAnswers.Count())
+                    //    {
+                    //        Console.WriteLine("Missing one");
+                    //        break;
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.WriteLine("Error 3");
+                    //        break;
+                    //    }
+                    //}
+
+                    List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
+                    int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers, randomQuestion, userAnswer);
                     sumOfAllPoints = UI.AddingPoints(points, userPointsList);
+                    //UI.CheckingInput(userLetter, randomQuestion, userAnswer, userInputArray);
+
+
                     questionsPlayed++;
                 } while (questionsPlayed < 20);
                 Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints} ");

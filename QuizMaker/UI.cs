@@ -110,11 +110,31 @@ namespace QuizMaker
             return corAnQ;
         }
 
-        public static int PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers)
+        public static int PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion, string userAnswer)
         {
+            List<string> matchedCorrectAnswers = userCorrectAnswers;
+            List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
+            int totalCorrectAnswers = savedCorrectAnswers.Count;
             int numberOfCorrectAnswers = userCorrectAnswers.Count;
             int points = 0;
-            List<string> matchedCorrectAnswers = userCorrectAnswers;
+
+            //for (int i = 0; i < totalCorrectAnswers; i++)
+            //{
+            //    if (userAnswerList.Count != totalCorrectAnswers)
+            //    {
+            //        Console.WriteLine("There is two correct answers! You entered only 1");
+            //        userAnswer = Console.ReadLine();
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Error + sitas ");
+            //        break;
+            //    }
+            //}
+
+
+
             if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 2)
             {
                 points = +1;
@@ -125,23 +145,65 @@ namespace QuizMaker
                 points = +2;
                 Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
-            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 2)
+            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 1)
+            {
+                Console.WriteLine("Should be two options!");
+            }
+            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 1)
+            {
+                points = +1;
+                Console.WriteLine($"Answer is good! It is {matchedCorrectAnswers[0]}");
+            }
+            else if (numberOfCorrectAnswers == 0 && userAnswerList.Count == 2)
             {
                 points = -2;
                 Console.WriteLine("Wrong both answers!");
             }
-            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 1)
-            {    
+            else if (numberOfCorrectAnswers == 0 && userAnswerList.Count == 1)
+            {
                 points = -1;
                 Console.WriteLine("Wrong answer!");
             }
             else
             {
                 Console.WriteLine("Error");
-
             }
             return points;
         }
+
+        //public static string GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        //{
+        //    int usrInpLength = userAnswer.Length;
+        //    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
+        //    bool mltplAnsw = false;
+        //    bool snglAnsw = true;
+
+        //    if (countedCorrAnsw == 2 && usrInpLength < 3 || countedCorrAnsw == 1 && usrInpLength > 1)
+        //    {
+        //        snglAnsw = false;
+        //    }
+
+        //    while (!snglAnsw)
+        //    {
+
+        //        if (usrInpLength == 3 && countedCorrAnsw == 2 || usrInpLength == 1 && countedCorrAnsw == 1)
+        //        {
+        //            snglAnsw = true;
+        //            Console.WriteLine(mltplAnsw);
+        //            continue;
+        //        }
+        //        else
+        //        {
+        //            mltplAnsw = false;
+        //            snglAnsw = false;
+
+        //            Console.WriteLine("Not good to go. Did you gave a good answer? The 1");
+        //            userAnswer = Console.ReadLine().ToUpper();
+        //            break;
+        //        }
+        //    }
+        //    return userAnswer;
+        //}
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
@@ -204,6 +266,54 @@ namespace QuizMaker
             //    Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
             //}
             return userPointsList.Sum();
+        }
+
+        public static void CheckingInput(char userLetter, UserQuestionsAndAnswers randomQuestion, string userAnswer, List<string> userAnswerList)
+        {
+            List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
+            string[] splitedAnswers = userAnswer.Split(',');
+            int userInputCount = splitedAnswers.Length;
+            bool userInput = false;
+            if (userAnswerList.Count == 2)
+            {
+                userInput = true;
+            }
+            else
+            {
+                userInput = false;
+            }
+            while (userInput)
+            {
+                Console.WriteLine("Missing one option to play");
+                return;
+            }
+            //while (userAnswer == "")
+            //{
+
+            //    if(!Char.IsLetter(userLetter))
+            //    {
+            //        Console.WriteLine("Wrong character used! Should be A,B,C or D");
+            //        continue;
+            //    }
+            //    else if(savedCorrectAnswers.Count() == 2 && userAnswerList.Count() == 1)
+            //    {
+
+            //        Console.WriteLine("Missing one option to play");
+            //        continue;
+            //    }
+            //    else
+            //    { 
+            //        Console.WriteLine("Error");
+            //        break;
+            //    }
+
+            //}
+
+            //while(savedCorrectAnswers.Count() == 2 && user < 2)
+            //{
+            //    Console.WriteLine("Missing one option to play");
+            //    continue;
+            //}
         }
     }
 }
