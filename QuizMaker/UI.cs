@@ -115,7 +115,7 @@ namespace QuizMaker
             List<string> matchedCorrectAnswers = userCorrectAnswers;
             List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
             int totalCorrectAnswers = savedCorrectAnswers.Count;
-            int numberOfCorrectAnswers = userCorrectAnswers.Count;
+            // change numberOfCorrectAnswer to totalCorrectAnswers!!
             int points = 0;
 
             //for (int i = 0; i < totalCorrectAnswers; i++)
@@ -135,31 +135,31 @@ namespace QuizMaker
 
 
 
-            if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 2)
+            if (totalCorrectAnswers == 1 && userAnswerList.Count == 2)
             {
                 points = +1;
                 Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
             }
-            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 2)
+            else if (totalCorrectAnswers == 2 && userAnswerList.Count == 2)
             {
                 points = +2;
                 Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
-            else if (numberOfCorrectAnswers == 2 && userAnswerList.Count == 1)
+            else if (totalCorrectAnswers == 2 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Should be two options!");
             }
-            else if (numberOfCorrectAnswers == 1 && userAnswerList.Count == 1)
+            else if (totalCorrectAnswers == 1 && userAnswerList.Count == 1)
             {
                 points = +1;
                 Console.WriteLine($"Answer is good! It is {matchedCorrectAnswers[0]}");
             }
-            else if (numberOfCorrectAnswers == 0 && userAnswerList.Count == 2)
+            else if (totalCorrectAnswers == 0 && userAnswerList.Count == 2)
             {
                 points = -2;
                 Console.WriteLine("Wrong both answers!");
             }
-            else if (numberOfCorrectAnswers == 0 && userAnswerList.Count == 1)
+            else if (totalCorrectAnswers == 0 && userAnswerList.Count == 1)
             {
                 points = -1;
                 Console.WriteLine("Wrong answer!");
