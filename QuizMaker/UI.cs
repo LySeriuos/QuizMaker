@@ -118,23 +118,6 @@ namespace QuizMaker
             // change numberOfCorrectAnswer to totalCorrectAnswers!!
             int points = 0;
 
-            //for (int i = 0; i < totalCorrectAnswers; i++)
-            //{
-            //    if (userAnswerList.Count != totalCorrectAnswers)
-            //    {
-            //        Console.WriteLine("There is two correct answers! You entered only 1");
-            //        userAnswer = Console.ReadLine();
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Error + sitas ");
-            //        break;
-            //    }
-            //}
-
-
-
             if (totalCorrectAnswers == 1 && userAnswerList.Count == 2)
             {
                 points = +1;
@@ -148,6 +131,7 @@ namespace QuizMaker
             else if (totalCorrectAnswers == 2 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Should be two options!");
+                
             }
             else if (totalCorrectAnswers == 1 && userAnswerList.Count == 1)
             {
@@ -181,7 +165,7 @@ namespace QuizMaker
             return userAnswer;
         }
 
-        public static bool GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        public static string GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
             int usrInpLength = userAnswer.Length;
             int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
@@ -197,7 +181,7 @@ namespace QuizMaker
                 break;
             }
 
-            return mltpOrSnglAnsw;
+            return userAnswer;
         }
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
