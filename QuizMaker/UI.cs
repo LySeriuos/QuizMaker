@@ -171,39 +171,34 @@ namespace QuizMaker
             return points;
         }
 
-        //public static string GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
-        //{
-        //    int usrInpLength = userAnswer.Length;
-        //    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
-        //    bool mltplAnsw = false;
-        //    bool snglAnsw = true;
+        public static string CheckIfNullOrEmpty(string userAnswer)
+        {
+            while (string.IsNullOrEmpty(userAnswer))
+            {
+                Console.WriteLine("Oops, it can't be empty! Try again!");
+                userAnswer = Console.ReadLine().ToUpper();
+            }
+            return userAnswer;
+        }
 
-        //    if (countedCorrAnsw == 2 && usrInpLength < 3 || countedCorrAnsw == 1 && usrInpLength > 1)
-        //    {
-        //        snglAnsw = false;
-        //    }
+        public static bool GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        {
+            int usrInpLength = userAnswer.Length;
+            int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
+            bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
+            bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
+            bool mltpOrSnglAnsw = mltplAnsw || snglAnsw;
 
-        //    while (!snglAnsw)
-        //    {
+            while (!mltpOrSnglAnsw)
+            {
+                Console.WriteLine("Check if your answer was proprely formulated! Single answer should be: A or B or C or D. Multiple answers should have ',' between Multiple answers and it should be: A,B or B,C or C,D... ");
+                Console.WriteLine("Write your answer again");
+                userAnswer = Console.ReadLine().ToUpper();
+                break;
+            }
 
-        //        if (usrInpLength == 3 && countedCorrAnsw == 2 || usrInpLength == 1 && countedCorrAnsw == 1)
-        //        {
-        //            snglAnsw = true;
-        //            Console.WriteLine(mltplAnsw);
-        //            continue;
-        //        }
-        //        else
-        //        {
-        //            mltplAnsw = false;
-        //            snglAnsw = false;
-
-        //            Console.WriteLine("Not good to go. Did you gave a good answer? The 1");
-        //            userAnswer = Console.ReadLine().ToUpper();
-        //            break;
-        //        }
-        //    }
-        //    return userAnswer;
-        //}
+            return mltpOrSnglAnsw;
+        }
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {

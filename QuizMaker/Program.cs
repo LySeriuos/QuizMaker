@@ -71,60 +71,32 @@ namespace QuizMaker
                     // printing out random question and asnwers to the user
                     QuizCard.GetTheListToString(randomQuestion);
                     string userAnswer = Console.ReadLine().ToUpper();
-                    int usrInpLength = userAnswer.Length;
-                    Console.Write(usrInpLength);
-                    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
-                    Console.Write(countedCorrAnsw);
-                    bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
-                    Console.WriteLine(mltplAnsw);
-                    bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
-                    Console.WriteLine(snglAnsw);
-                    bool sandwich = mltplAnsw || snglAnsw;
-                    Console.WriteLine(sandwich);
-                    bool usrInput;
-                    char charResult;
-                    
-                    while(!sandwich)
-                    {
 
-                        Console.WriteLine("bad input, put nother one");
-                        userAnswer = Console.ReadLine().ToUpper();
-                        break;
-                        
-                    }
+                    userAnswer = CheckIfNullOrEmpty(userAnswer);
 
-                    //if (char.TryParse(userAnswer, out charResult))
-                    //{
-                    //    Console.WriteLine($"Your age is: {charResult}");
-                    //}
-                    //else
-                    //{
-                    //    break;
-                    //}
-                    //bool parseSuccess = bool.TryParse(userAnswer, out usrInput);
-                    //if (parseSuccess)
-                    //{
-                    //    Console.WriteLine($"Your age is: {usrInput}");
-                    //    userAnswer = Console.ReadLine().ToUpper();
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("This is not a number!");
-                    //    continue;
-                    //}
                     //int usrInpLength = userAnswer.Length;
+                    //Console.Write(usrInpLength);
                     //int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
-                    
-                    //char userLetter = userAnswer[0];
-                    //while (string.IsNullOrEmpty(userAnswer))
+                    //Console.Write(countedCorrAnsw);
+                    //bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
+                    //Console.WriteLine(mltplAnsw);
+                    //bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
+                    //Console.WriteLine(snglAnsw);
+                    //bool sandwich = mltplAnsw || snglAnsw;
+                    //Console.WriteLine(sandwich);
+                    //bool usrInput;
+                    //char charResult;
+
+                    //while (!sandwich)
                     //{
 
-                    //    Console.WriteLine("Name can't be empty! Input your name once more");
+                    //    Console.WriteLine("bad input, put nother one");
                     //    userAnswer = Console.ReadLine().ToUpper();
+                    //    break;
 
-                    //    //string checkedUserInput = GetCorrectUsrInput(userAnswer, randomQuestion);
-                    //    //Console.WriteLine(checkedUserInput);
                     //}
+
+
 
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
 
