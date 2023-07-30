@@ -56,12 +56,6 @@ namespace QuizMaker
             if (File.Exists(path))
             {
                 qNaList = Data.GetQnAListToXml(path);
-
-                //for (int i = 0; i < qNaList.Count; i++)
-                //{
-                //    Console.WriteLine(qNaList[i]);
-                //}
-
             }
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
@@ -78,7 +72,6 @@ namespace QuizMaker
             for (int arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {
                 userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
-                //Console.WriteLine(userQnaArray[i]);
             }
 
             qna.Question = userQnaArray[0];
@@ -114,8 +107,6 @@ namespace QuizMaker
         {
             List<string> matchedCorrectAnswers = userCorrectAnswers;
             List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
-            int totalCorrectAnswers = savedCorrectAnswers.Count;
-            // change numberOfCorrectAnswer to totalCorrectAnswers!!
             int points = 0;
 
             if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 2)
@@ -150,7 +141,7 @@ namespace QuizMaker
             }
             else
             {
-                Console.WriteLine("Error");
+                Console.WriteLine("Something went wrong!");
             }
             return points;
         }
@@ -264,76 +255,18 @@ namespace QuizMaker
                     {
                         break;
                     }
-
                 }
             }
-
             return userAnswersList;
         }
         public static int AddingPoints(int points, List<int> userPointsList)
         {
             // add to list and then print total
             int userPoints = points;
-            userPointsList.Add(userPoints);
-            //if (userPointsList.Sum() < 0)
-            //{
-            //    userPoints = 0;
-            //    Console.WriteLine($"Your current score is {userPoints}  ");
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"Your current score is: {userPointsList.Sum()}");
-            //}
+            userPointsList.Add(userPoints);           
             return userPointsList.Sum();
         }
-
-        public static void CheckingInput(char userLetter, UserQuestionsAndAnswers randomQuestion, string userAnswer, List<string> userAnswerList)
-        {
-            List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
-            string[] splitedAnswers = userAnswer.Split(',');
-            int userInputCount = splitedAnswers.Length;
-            bool userInput = false;
-            if (userAnswerList.Count == 2)
-            {
-                userInput = true;
-            }
-            else
-            {
-                userInput = false;
-            }
-            while (userInput)
-            {
-                Console.WriteLine("Missing one option to play");
-                return;
-            }
-            //while (userAnswer == "")
-            //{
-
-            //    if(!Char.IsLetter(userLetter))
-            //    {
-            //        Console.WriteLine("Wrong character used! Should be A,B,C or D");
-            //        continue;
-            //    }
-            //    else if(savedCorrectAnswers.Count() == 2 && userAnswerList.Count() == 1)
-            //    {
-
-            //        Console.WriteLine("Missing one option to play");
-            //        continue;
-            //    }
-            //    else
-            //    { 
-            //        Console.WriteLine("Error");
-            //        break;
-            //    }
-
-            //}
-
-            //while(savedCorrectAnswers.Count() == 2 && user < 2)
-            //{
-            //    Console.WriteLine("Missing one option to play");
-            //    continue;
-            //}
-        }
+        
     }
 }
 
