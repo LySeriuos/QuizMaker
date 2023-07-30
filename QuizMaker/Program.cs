@@ -73,7 +73,11 @@ namespace QuizMaker
                     string userAnswer = Console.ReadLine().ToUpper();
 
                     userAnswer = CheckIfNullOrEmpty(userAnswer);
+                    userAnswer = CheckIfINputIsALetter(userAnswer);
                     userAnswer = GetCorrectUsrInput(userAnswer, randomQuestion);
+
+                    //userAnswer = UserInputCheck(userAnswer, randomQuestion);
+                    //Console.WriteLine(userAnswer);
 
                     //int usrInpLength = userAnswer.Length;
                     //Console.Write(usrInpLength);

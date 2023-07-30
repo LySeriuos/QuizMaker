@@ -126,12 +126,12 @@ namespace QuizMaker
             else if (totalCorrectAnswers == 2 && userAnswerList.Count == 2)
             {
                 points = +2;
-                Console.WriteLine($"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
+                Console.WriteLine(value: $"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
             else if (totalCorrectAnswers == 2 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Should be two options!");
-                
+
             }
             else if (totalCorrectAnswers == 1 && userAnswerList.Count == 1)
             {
@@ -183,6 +183,46 @@ namespace QuizMaker
 
             return userAnswer;
         }
+
+        public static string CheckIfINputIsALetter(string userAnswer)
+        {
+            char userLetterChar = userAnswer[0];
+
+            while (!Char.IsLetter(userLetterChar))
+            {
+                Console.WriteLine("Wrong character used! Should be A,B,C or D");
+                userAnswer = Console.ReadLine().ToUpper();
+                break;
+            }
+            return userAnswer;
+        }
+
+        // trying to add all the checks together! This is not functioning properly.
+        //public static string UserInputCheck(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        //{            
+            
+        //    int usrInpLength = userAnswer.Length;
+        //    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
+        //    bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
+        //    bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
+        //    bool mltpOrSnglAnsw = mltplAnsw || snglAnsw;
+        //    while (string.IsNullOrEmpty(userAnswer))
+        //    {
+        //        Console.WriteLine("Oops, it can't be empty! Try again!");
+        //        userAnswer = Console.ReadLine().ToUpper();
+        //        bool usrInptIsALetter = Char.IsLetter(userAnswer[0]);
+        //        while (!mltpOrSnglAnsw || !usrInptIsALetter)
+        //        {
+        //            Console.Write($"usrInputIsNotEmpty:{string.IsNullOrEmpty(userAnswer)}, usrInptIsALetter: {usrInptIsALetter}, mltpOrSnglAnsw: {mltpOrSnglAnsw}");
+        //            Console.WriteLine("Check if your answer was proprely formulated! Single answer should be: A or B or C or D. Multiple answers should have ',' between Multiple answers and it should be: A,B or B,C or C,D... ");
+        //            Console.WriteLine("Write your answer again");
+        //            userAnswer = Console.ReadLine().ToUpper();
+        //            break;
+
+        //        }
+        //    }
+        //    return userAnswer;
+        //}
 
         public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
