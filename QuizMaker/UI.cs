@@ -118,32 +118,32 @@ namespace QuizMaker
             // change numberOfCorrectAnswer to totalCorrectAnswers!!
             int points = 0;
 
-            if (totalCorrectAnswers == 1 && userAnswerList.Count == 2)
+            if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 2)
             {
                 points = +1;
                 Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
             }
-            else if (totalCorrectAnswers == 2 && userAnswerList.Count == 2)
+            else if (matchedCorrectAnswers.Count == 2 && userAnswerList.Count == 2)
             {
                 points = +2;
                 Console.WriteLine(value: $"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
             }
-            else if (totalCorrectAnswers == 2 && userAnswerList.Count == 1)
+            else if (matchedCorrectAnswers.Count == 2 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Should be two options!");
 
             }
-            else if (totalCorrectAnswers == 1 && userAnswerList.Count == 1)
+            else if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 1)
             {
                 points = +1;
                 Console.WriteLine($"Answer is good! It is {matchedCorrectAnswers[0]}");
             }
-            else if (totalCorrectAnswers == 0 && userAnswerList.Count == 2)
+            else if (matchedCorrectAnswers.Count == 0 && userAnswerList.Count == 2)
             {
                 points = -2;
                 Console.WriteLine("Wrong both answers!");
             }
-            else if (totalCorrectAnswers == 0 && userAnswerList.Count == 1)
+            else if (matchedCorrectAnswers.Count == 0 && userAnswerList.Count == 1)
             {
                 points = -1;
                 Console.WriteLine("Wrong answer!");
