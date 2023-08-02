@@ -6,19 +6,25 @@ namespace QuizMaker
     {
         public static UserQuestionsAndAnswers GetRandomQuestion(string path)
         {
+            // Knuth shuffle
+
             var random = new Random();
             UserQuestionsAndAnswers questionsForUser = new UserQuestionsAndAnswers();
             List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);
-
+            // For each unshuffled item in the collection
             for (int n = qNaList.Count() - 1; n > 0; --n)
             {
+                // Randomly picking an item which has not been shuffled
                 int k = random.Next(n + 1);
+
+                // Swaping the selected item with the last "unstruck" question in collection
                 UserQuestionsAndAnswers temp = qNaList[n];
                 qNaList[n] = qNaList[k];
                 qNaList[k] = temp;
+
+                // adding value to the method output 
                 questionsForUser = qNaList[k];
-            }
-            
+            }            
             return questionsForUser;
         }
 
