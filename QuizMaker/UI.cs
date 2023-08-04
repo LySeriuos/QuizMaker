@@ -10,7 +10,7 @@ namespace QuizMaker
 {
     internal class UI
     {
-        public static void PrintTheCreatingQuestionsRools()
+        public static void PrintRoolsToCreateQnA()
         {
             Console.WriteLine("Write your questions and answers in one line.");
             Console.WriteLine("Mark correct answer with the star symbol.If there is more than one correct answers add star symbols to all good answers.");
@@ -150,8 +150,6 @@ namespace QuizMaker
                 userAnswer = Console.ReadLine().ToUpper();
                 break;
             }
-            
-
             return userAnswer;
         }
 

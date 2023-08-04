@@ -38,7 +38,7 @@ namespace QuizMaker
 
             if (selection == GameMode.AddQuestions)
             {
-                UI.PrintTheCreatingQuestionsRools();
+                UI.PrintRoolsToCreateQnA();
                 do
                 {
                     userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
