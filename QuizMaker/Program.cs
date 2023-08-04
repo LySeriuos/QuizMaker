@@ -56,8 +56,6 @@ namespace QuizMaker
             if (selection == GameMode.PlayGame)
             {
                 UI.GamePlayRools();
-                List<int> userPointsList = new List<int>();
-
                 int questionsPlayed = 0;
                 int sumOfAllPoints = 0;
                 do
