@@ -103,9 +103,8 @@ namespace QuizMaker
             return corAnQ;
         }
 
-        public static void PrintPointResponse(int points, List<string> userCorrectAnswers)
+        public static void PrintPointsResponse(int points, List<string> userCorrectAnswers)
         {
-
             switch (points)
             {                
                 case 1:
