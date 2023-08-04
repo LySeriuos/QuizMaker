@@ -105,67 +105,43 @@ namespace QuizMaker
 
         public static void PrintPointResponse(int points, List<string> userCorrectAnswers)
         {
+
             switch (points)
-            {
-                case 0: 
-                    Console.WriteLine("Should be two options!"); break;
+            {                
                 case 1:
+                    Console.WriteLine($"One answer is good! It is {userCorrectAnswers[0]}");
+                    break;
                 case 2:
-                    Console.WriteLine($"One answer of two is good! It is {userCorrectAnswers[0]}"); break;
+                    Console.WriteLine($"Both answers is good! They are {userCorrectAnswers[0]} and {userCorrectAnswers[1]}"); break;
+                case -1:
+                    Console.WriteLine("Wrong answer!");
+                    break;
+                case -2:
+                    Console.WriteLine("Wrong both answers!");
+                    break;
                 default:
-                    Console.WriteLine("oops!"); break;
+                    Console.WriteLine("Something went wrong!"); break;
 
             }
         }
 
 
-        public static int PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion, string userAnswer)
+        public static int CountingGamePoints( List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion)
         {
-            List<string> matchedCorrectAnswers = userCorrectAnswers;
-            List<string> savedCorrectAnswers = randomQuestion.CorrectAnswers;
-            int points = 0;
-
-            if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 2)
+            int matchedCorrectAnswers = userCorrectAnswers.Count;            
+            int savedCorrectAnswers = randomQuestion.CorrectAnswers.Count;
+            int points;
+            if(matchedCorrectAnswers < savedCorrectAnswers )
             {
-                points = +1;
-                Console.WriteLine($"One answer of two is good! It is {matchedCorrectAnswers[0]}");
-            }
-            else if (matchedCorrectAnswers.Count == 2 && userAnswerList.Count == 2)
-            {
-                points = +2;
-                Console.WriteLine(value: $"Two answers is good! They are {matchedCorrectAnswers[0]} and {matchedCorrectAnswers[1]}");
-            }
-            else if (matchedCorrectAnswers.Count == 2 && userAnswerList.Count == 1)
-            {
-                Console.WriteLine("Should be two options!");
-            }
-            else if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 1)
-            {
-                points = +1;
-                Console.WriteLine($"Answer is good! It is {matchedCorrectAnswers[0]}");
-            }
-            else if (matchedCorrectAnswers.Count == 0 && userAnswerList.Count == 2)
-            {
-                points = -2;
-                Console.WriteLine("Wrong both answers!");
-            }
-            else if (matchedCorrectAnswers.Count == 0 && userAnswerList.Count == 1)
-            {
-                points = -1;
-                Console.WriteLine("Wrong answer!");
+                points = matchedCorrectAnswers - savedCorrectAnswers;
+                Console.WriteLine(points);
             }
             else
             {
-                Console.WriteLine("Something went wrong!");
+                points = matchedCorrectAnswers;
             }
+
             return points;
-
-            int correctUserAnswerCount, correctGameAnswerCount;
-
-            if (correctGameAnswerCount < correctUserAnswerCount)
-                points = correctGameAnswerCount - correctUserAnswerCount;
-            else
-                points = correctUserAnswerCount;
         }
 
         public static string CheckIfNullOrEmpty(string userAnswer)

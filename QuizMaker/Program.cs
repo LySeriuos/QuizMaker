@@ -74,8 +74,11 @@ namespace QuizMaker
 
                     List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);                    
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
-                    int points = UI.PrintAnswerResponseToUser(userInputArray, userCorrectAnswers, randomQuestion, userAnswer);
+                    int points = UI.CountingGamePoints(userInputArray, userCorrectAnswers, randomQuestion, userAnswer);
+                    Console.WriteLine(points);
                     sumOfAllPoints = sumOfAllPoints + points;// = UI.AddingPoints(points, userPointsList);
+                    Console.WriteLine(sumOfAllPoints);
+                   
                     questionsPlayed++;
                 } while (questionsPlayed < 20);
                 Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints}");
