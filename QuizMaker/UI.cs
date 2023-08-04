@@ -209,13 +209,6 @@ namespace QuizMaker
             }
             return userAnswersList;
         }
-        public static int AddingPoints(int points, List<int> userPointsList)
-        {
-            // add to list and then print total
-            int userPoints = points;
-            userPointsList.Add(userPoints);
-            return userPointsList.Sum();
-        }
 
     }
 }
