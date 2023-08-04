@@ -124,25 +124,6 @@ namespace QuizMaker
             }
         }
 
-
-        public static int CountingGamePoints( List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion)
-        {
-            int matchedCorrectAnswers = userCorrectAnswers.Count;            
-            int savedCorrectAnswers = randomQuestion.CorrectAnswers.Count;
-            int points;
-            if(matchedCorrectAnswers < savedCorrectAnswers )
-            {
-                points = matchedCorrectAnswers - savedCorrectAnswers;
-                Console.WriteLine(points);
-            }
-            else
-            {
-                points = matchedCorrectAnswers;
-            }
-
-            return points;
-        }
-
         public static string CheckIfNullOrEmpty(string userAnswer)
         {
             while (string.IsNullOrEmpty(userAnswer))
