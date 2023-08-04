@@ -41,7 +41,7 @@
         public static List<string> GetMatchedCorrectAnswer(UserQuestionsAndAnswers randomQuestion, List<string> userAnswerList)
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;
-            string theCorrectAnswer = "";
+            string theCorrectAnswer;
             List<string> userCorrectAnswers = new List<string>();
             for (int userAnswerListIndex = 0; userAnswerListIndex < userAnswerList.Count; userAnswerListIndex++)
             {
