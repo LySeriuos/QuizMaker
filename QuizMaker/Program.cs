@@ -58,6 +58,7 @@ namespace QuizMaker
                 UI.GamePlayRools();
                 int questionsPlayed = 0;
                 int sumOfAllPoints = 0;
+                int totalQuestionsToPlay = 20;
                 do
                 {
                     // getting random question from the list
@@ -76,7 +77,7 @@ namespace QuizMaker
                     sumOfAllPoints = sumOfAllPoints + points;
                    
                     questionsPlayed++;
-                } while (questionsPlayed < 20);
+                } while (questionsPlayed < totalQuestionsToPlay);
                 Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints}");
             }
         }
