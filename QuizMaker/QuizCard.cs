@@ -9,7 +9,7 @@ namespace QuizMaker
 {
     internal class QuizCard
     {
-        public static void GetTheListToString(UserQuestionsAndAnswers randomQuestion)
+        public static void PrintQuestionsAndAnswers(UserQuestionsAndAnswers randomQuestion)
         {
             string question = randomQuestion.Question;
             string answerOne = randomQuestion.AnswerOne;

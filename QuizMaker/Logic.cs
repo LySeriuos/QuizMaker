@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace QuizMaker
+﻿namespace QuizMaker
 {
     internal class Logic
     {
+        /// <summary>
+        /// Knuth shuffle to get non repeatable questions rinted for the user
+        /// </summary>
+        /// <param name="path">stored questions and answers list path in local memory</param>
+        /// <returns> Random question to the user</returns>
         public static UserQuestionsAndAnswers GetRandomQuestion(string path)
         {
             // Knuth shuffle
@@ -28,8 +31,13 @@ namespace QuizMaker
             return questionsForUser;
         }
 
-       
 
+        /// <summary>
+        /// Creating a List to store matched correct answers 
+        /// </summary>
+        /// <param name="randomQuestion">Chosed Random question from the GetRandomQuestion method</param>
+        /// <param name="userAnswerList">List to add all user Answers before is checked if these are correct </param>
+        /// <returns>matched correct answers</returns>
         public static List<string> GetMatchedCorrectAnswer(UserQuestionsAndAnswers randomQuestion, List<string> userAnswerList)
         {
             List<string> correctAnswer = randomQuestion.CorrectAnswers;

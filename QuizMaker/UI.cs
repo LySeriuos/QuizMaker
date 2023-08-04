@@ -103,6 +103,22 @@ namespace QuizMaker
             return corAnQ;
         }
 
+        public static void PrintPointResponse(int points, List<string> userCorrectAnswers)
+        {
+            switch (points)
+            {
+                case 0: 
+                    Console.WriteLine("Should be two options!"); break;
+                case 1:
+                case 2:
+                    Console.WriteLine($"One answer of two is good! It is {userCorrectAnswers[0]}"); break;
+                default:
+                    Console.WriteLine("oops!"); break;
+
+            }
+        }
+
+
         public static int PrintAnswerResponseToUser(List<string> userAnswerList, List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion, string userAnswer)
         {
             List<string> matchedCorrectAnswers = userCorrectAnswers;
@@ -122,7 +138,6 @@ namespace QuizMaker
             else if (matchedCorrectAnswers.Count == 2 && userAnswerList.Count == 1)
             {
                 Console.WriteLine("Should be two options!");
-
             }
             else if (matchedCorrectAnswers.Count == 1 && userAnswerList.Count == 1)
             {
@@ -144,6 +159,13 @@ namespace QuizMaker
                 Console.WriteLine("Something went wrong!");
             }
             return points;
+
+            int correctUserAnswerCount, correctGameAnswerCount;
+
+            if (correctGameAnswerCount < correctUserAnswerCount)
+                points = correctGameAnswerCount - correctUserAnswerCount;
+            else
+                points = correctUserAnswerCount;
         }
 
         public static string CheckIfNullOrEmpty(string userAnswer)
@@ -191,7 +213,7 @@ namespace QuizMaker
         // trying to add all the checks together! This is not functioning properly.
         //public static string UserInputCheck(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         //{            
-            
+
         //    int usrInpLength = userAnswer.Length;
         //    int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
         //    bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
@@ -263,10 +285,10 @@ namespace QuizMaker
         {
             // add to list and then print total
             int userPoints = points;
-            userPointsList.Add(userPoints);           
+            userPointsList.Add(userPoints);
             return userPointsList.Sum();
         }
-        
+
     }
 }
 
