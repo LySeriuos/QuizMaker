@@ -139,8 +139,9 @@ namespace QuizMaker
             int usrInpLength = userAnswer.Length;
             int countedCorrAnsw = randomQuestion.CorrectAnswers.Count();
             bool mltplAnsw = countedCorrAnsw == 2 && usrInpLength == 3;
+            Console.WriteLine(mltplAnsw);
             bool snglAnsw = countedCorrAnsw == 1 && usrInpLength == 1;
-            bool mltpOrSnglAnsw = mltplAnsw || snglAnsw;
+            bool mltpOrSnglAnsw = mltplAnsw && countedCorrAnsw == 2 || snglAnsw && countedCorrAnsw == 1;
 
             while (!mltpOrSnglAnsw)
             {
@@ -149,6 +150,7 @@ namespace QuizMaker
                 userAnswer = Console.ReadLine().ToUpper();
                 break;
             }
+            
 
             return userAnswer;
         }
