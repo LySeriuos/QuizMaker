@@ -10,7 +10,6 @@
         public static UserQuestionsAndAnswers GetRandomQuestion(string path)
         {
             // Knuth shuffle
-
             var random = new Random();
             UserQuestionsAndAnswers questionsForUser = new UserQuestionsAndAnswers();
             List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);

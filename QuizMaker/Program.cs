@@ -47,8 +47,32 @@ namespace QuizMaker
                     // Creating empty list if the "path" doesn't exist
                     qNaList = Data.GetQnAListToXml(path);
                     uQnA.CorrectAnswers = correctAnswers;
-                    qNaList.Add(uQnA);
-                    Data.SaveQnAListToXml(qNaList, path);
+                    bool questionExist = CheckIfQuestionAlreadyExsist(qNaList, uQnA);                    
+                    switch(questionExist)
+                    {
+                        case true:
+                            Console.WriteLine("Question already exist, please add other question");
+                            continue;
+                        case false:
+                            qNaList.Add(uQnA);
+                            Data.SaveQnAListToXml(qNaList, path);
+                            Console.WriteLine("Your question and answers has been added!");
+                            continue;
+                    }
+
+                    // does this fits here? 
+                    //if(!questionExist)
+                    //{                        
+                    //    qNaList.Add(uQnA);
+                    //    Data.SaveQnAListToXml(qNaList, path);
+                    //    Console.WriteLine("Your question and answers has been added!");
+                    //    continue;
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("Question already exist, please add other question");
+                    //    continue;
+                    //}
 
                 } while (userQuestions.Length > 0);
             }
@@ -71,10 +95,10 @@ namespace QuizMaker
                     userAnswer = CheckIfINputIsALetter(userAnswer);
                     userAnswer = GetCorrectUsrInput(userAnswer, randomQuestion);
 
-                    List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);                    
+                    List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
                     int points = Logic.CountingGamePoints(userCorrectAnswers, randomQuestion);
-                    sumOfAllPoints = sumOfAllPoints + points;                   
+                    sumOfAllPoints = sumOfAllPoints + points;
                     questionsPlayed++;
                 } while (questionsPlayed < totalQuestionsToPlay);
                 if (sumOfAllPoints < 0)

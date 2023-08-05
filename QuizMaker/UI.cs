@@ -91,7 +91,7 @@ namespace QuizMaker
             int arrayPosition;
             for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {
-                string qca = "";
+                string qca;
                 if (userQnaArray[arrayPosition].Contains('*'))
                 {
                     userQnaArray[arrayPosition] = userQnaArray[arrayPosition].Trim('*');
@@ -102,6 +102,19 @@ namespace QuizMaker
             }
             return corAnQ;
         }
+        public static bool CheckIfQuestionAlreadyExsist(List<UserQuestionsAndAnswers> qNaList, UserQuestionsAndAnswers uQnA)
+        {
+            bool questionExist = true;
+            List<string> list = new List<string>();
+            foreach (UserQuestionsAndAnswers item in qNaList)
+            {
+                questionExist = qNaList.Exists(x => x.Question == uQnA.Question);
+                Console.WriteLine($"{questionExist}");                
+                break;
+            }
+            return questionExist;
+        }
+
 
         public static void PrintPointsResponse(int points, List<string> userCorrectAnswers)
         {
@@ -123,7 +136,6 @@ namespace QuizMaker
 
             }
         }
-
         public static string CheckIfNullOrEmpty(string userAnswer)
         {
             while (string.IsNullOrEmpty(userAnswer))
