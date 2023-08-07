@@ -16,7 +16,8 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Temp\UserQuestionsAndAnswers.xml"; //TODO: look at relative paths
+            // path where the xml file with the list data is
+            string path = @"C:\Temp\UserQuestionsAndAnswers.xml";
             // ask this
             GameMode selection = UI.SelectGameMode();
 
@@ -57,24 +58,10 @@ namespace QuizMaker
                             qNaList.Add(uQnA);
                             Data.SaveQnAListToXml(qNaList, path);
                             Console.WriteLine("Your question and answers has been added!");
-                            continue;
+                            break;
                     }
 
-                    // does this fits here? 
-                    //if(!questionExist)
-                    //{                        
-                    //    qNaList.Add(uQnA);
-                    //    Data.SaveQnAListToXml(qNaList, path);
-                    //    Console.WriteLine("Your question and answers has been added!");
-                    //    continue;
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("Question already exist, please add other question");
-                    //    continue;
-                    //}
-
-                } while (userQuestions.Length > 0);
+                } while (userQuestions.Length > 0 && Console.ReadKey().Key != ConsoleKey.E); // how to quit adding questionor going back to the main menu.
             }
 
             if (selection == GameMode.PlayGame)
