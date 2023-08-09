@@ -79,7 +79,6 @@ namespace QuizMaker
             qna.AnswerTwo = userQnaArray[2];
             qna.AnswerThree = userQnaArray[3];
             qna.AnswerFour = userQnaArray[4];
-
             return qna;
         }
 
@@ -102,6 +101,17 @@ namespace QuizMaker
             }
             return corAnQ;
         }
+
+        public static void PrintQuestionsAndAnswers(UserQuestionsAndAnswers randomQuestion)
+        {
+            string question = randomQuestion.Question;
+            string answerOne = randomQuestion.AnswerOne;
+            string answerTwo = randomQuestion.AnswerTwo;
+            string answerThree = randomQuestion.AnswerThree;
+            string answerFour = randomQuestion.AnswerFour;
+            Console.WriteLine($"\nQuestion: {question} \n\nA: {answerOne} \nB: {answerTwo} \nC: {answerThree} \nD: {answerFour}");
+        }
+
         public static bool CheckIfQuestionAlreadyExsist(List<UserQuestionsAndAnswers> qNaList, UserQuestionsAndAnswers uQnA)
         {
             bool questionExist = true;

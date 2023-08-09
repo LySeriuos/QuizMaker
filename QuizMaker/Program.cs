@@ -42,13 +42,19 @@ namespace QuizMaker
                 UI.PrintRoolsToCreateQnA();
                 do
                 {
+                    // taking user questions and answers
                     userQuestions = UI.TakeUserInputAsQnA(qNaList, path);
+                    // splitting user input and assigning these as variables using class
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+                    // splitting user input to get and assign marked correct answer 
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
-                    // Creating empty list if the "path" doesn't exist
+                    // Gettig List if it was saved or creating empty list if the "path" doesn't exist
                     qNaList = Data.GetQnAListToXml(path);
+                    // assigning correct answers to the same class as questions and answers
                     uQnA.CorrectAnswers = correctAnswers;
-                    bool questionExist = CheckIfQuestionAlreadyExsist(qNaList, uQnA);                    
+                    // checking if exactly the same question already is in the saved list
+                    bool questionExist = CheckIfQuestionAlreadyExsist(qNaList, uQnA);
+                    // using switch case to add questions and answers if these are unique or throw error to ask for unique question
                     switch(questionExist)
                     {
                         case true:
@@ -61,9 +67,9 @@ namespace QuizMaker
                             break;
                     }
 
-                } while (userQuestions.Length > 0 && Console.ReadKey().Key != ConsoleKey.E); // how to quit adding questionor going back to the main menu.
+                } while (userQuestions.Length > 0 && Console.ReadKey().Key != ConsoleKey.E); // how to quit adding question or going back to the main menu.
             }
-
+            // if user chose option to play a game this code will be lounched
             if (selection == GameMode.PlayGame)
             {
                 UI.GamePlayRools();
@@ -75,7 +81,7 @@ namespace QuizMaker
                     // getting random question from the list
                     UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
                     // printing out random question and asnwers to the user
-                    QuizCard.PrintQuestionsAndAnswers(randomQuestion); //TODO move to ui
+                    UI.PrintQuestionsAndAnswers(randomQuestion);
                     string userAnswer = Console.ReadLine().ToUpper();
 
                     userAnswer = CheckIfNullOrEmpty(userAnswer);
