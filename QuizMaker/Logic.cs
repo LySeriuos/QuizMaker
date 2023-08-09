@@ -56,6 +56,13 @@
             }
             return userCorrectAnswers;
         }
+
+        /// <summary>
+        /// Method to count points for user answers while playing
+        /// </summary>
+        /// <param name="userCorrectAnswers">Matched answers with user guessed and saved in the data list answers</param>
+        /// <param name="randomQuestion">This used to count all saved correct answers to that question</param>
+        /// <returns></returns>
         public static int CountingGamePoints(List<string> userCorrectAnswers, UserQuestionsAndAnswers randomQuestion)
         {
             int matchedCorrectAnswers = userCorrectAnswers.Count;

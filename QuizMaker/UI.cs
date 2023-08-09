@@ -187,7 +187,7 @@ namespace QuizMaker
             }
             return userAnswer;
         }
-        public static List<string> GetUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
+        public static List<string> TakeFromUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
             // spliting user input for multiple answers
             string[] userInputArray = userAnswer.Split(",");

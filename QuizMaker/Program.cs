@@ -80,15 +80,15 @@ namespace QuizMaker
                 {
                     // getting random question from the list
                     UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
-                    // printing out random question and asnwers to the user
+                    // printing out random question and asnwer options to the user
                     UI.PrintQuestionsAndAnswers(randomQuestion);
                     string userAnswer = Console.ReadLine().ToUpper();
-
+                    // user input validation
                     userAnswer = CheckIfNullOrEmpty(userAnswer);
                     userAnswer = CheckIfINputIsALetter(userAnswer);
                     userAnswer = GetCorrectUsrInput(userAnswer, randomQuestion);
 
-                    List<string> userInputArray = UI.GetUserAnswerOption(userAnswer, randomQuestion);
+                    List<string> userInputArray = UI.TakeFromUserAnswerOption(userAnswer, randomQuestion);
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
                     int points = Logic.CountingGamePoints(userCorrectAnswers, randomQuestion);
                     sumOfAllPoints = sumOfAllPoints + points;

@@ -7,6 +7,11 @@ namespace QuizMaker
 
     public class Data
     {
+        /// <summary>
+        /// Save the list to the local memory
+        /// </summary>
+        /// <param name="qNaList">The list with appended class</param>
+        /// <param name="path">location destination where list will be saved</param>
         public static void SaveQnAListToXml(List<UserQuestionsAndAnswers> qNaList, string path)
         {
             //    var path = @"C:\Users\shiranco.DESKTOP-HRN41TE\Documents\temp\UserQuestionsAndAnswers.xml";
@@ -16,6 +21,12 @@ namespace QuizMaker
                 XmlSerializer.Serialize(file, qNaList);
             }
         }
+
+        /// <summary>
+        /// Getting saved List 
+        /// </summary>
+        /// <param name="path">saved list location destination</param>
+        /// <returns>Saved List</returns>
         public static List<UserQuestionsAndAnswers> GetQnAListToXml(string path)
         {
             List<UserQuestionsAndAnswers> qNaList = new();
