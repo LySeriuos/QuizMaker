@@ -51,7 +51,7 @@ namespace QuizMaker
             }
         }
 
-        public static string GetTheUsersQuestionsAndAnswers(List<UserQuestionsAndAnswers> qNaList, string path)
+        public static string TakeUserInputAsQnA(List<UserQuestionsAndAnswers> qNaList, string path)
         {
             if (File.Exists(path))
             {

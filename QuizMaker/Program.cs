@@ -18,9 +18,9 @@ namespace QuizMaker
         {
             // path where the xml file with the list data is
             string path = @"C:\Temp\UserQuestionsAndAnswers.xml";
-            // ask this
+            // special method to have control over the main menu
             GameMode selection = UI.SelectGameMode();
-
+            // the main game menu
             switch (selection)
             {
                 case GameMode.AddQuestions: //add questions
@@ -33,16 +33,16 @@ namespace QuizMaker
                     Console.WriteLine("Unknown choice");
                     return;
             }
-
+            // creating new List using the class
             List<UserQuestionsAndAnswers> qNaList = new List<UserQuestionsAndAnswers>();
             string userQuestions;
-
+            // code is lounching if player chosed to add questions
             if (selection == GameMode.AddQuestions)
             {
                 UI.PrintRoolsToCreateQnA();
                 do
                 {
-                    userQuestions = UI.GetTheUsersQuestionsAndAnswers(qNaList, path);
+                    userQuestions = UI.TakeUserInputAsQnA(qNaList, path);
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
                     // Creating empty list if the "path" doesn't exist
