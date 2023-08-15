@@ -7,26 +7,15 @@
         /// </summary>
         /// <param name="path">stored questions and answers list path in local memory</param>
         /// <returns> Random question to the user</returns>
-        public static UserQuestionsAndAnswers GetRandomQuestion(string path)
+        public static UserQuestionsAndAnswers GetRandomQuestion(string path, List<UserQuestionsAndAnswers> savedQnAList)
         {
             // Knuth shuffle
             var random = new Random();
-            UserQuestionsAndAnswers questionsForUser = new UserQuestionsAndAnswers();
-            List<UserQuestionsAndAnswers> qNaList = Data.GetQnAListToXml(path);
-            // For each unshuffled item in the collection
-            for (int n = qNaList.Count() - 1; n > 0; --n)
-            {
-                // Randomly picking an item which has not been shuffled
-                int k = random.Next(n + 1);
+            UserQuestionsAndAnswers questionsForUser;
 
-                // Swaping the selected item with the last "unstruck" question in collection
-                UserQuestionsAndAnswers temp = qNaList[n];
-                qNaList[n] = qNaList[k];
-                qNaList[k] = temp;
-
-                // adding value to the method output 
-                questionsForUser = qNaList[k];
-            }            
+            int index = random.Next(savedQnAList.Count);
+            questionsForUser = savedQnAList[index];
+            savedQnAList.RemoveAt(index);           
             return questionsForUser;
         }
 

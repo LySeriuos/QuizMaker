@@ -28,7 +28,8 @@ namespace QuizMaker
 
                 case GameMode.PlayGame: // play game
                     break;
-
+                case GameMode.Exit:
+                    return;
                 default:
                     Console.WriteLine("Unknown choice");
                     return;
@@ -44,6 +45,9 @@ namespace QuizMaker
                 {
                     // taking user questions and answers
                     userQuestions = UI.TakeUserInputAsQnA(qNaList, path);
+                    if (userQuestions.ToUpper() == "E")
+                        break;
+
                     // splitting user input and assigning these as variables using class
                     UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
                     // splitting user input to get and assign marked correct answer 
@@ -76,10 +80,14 @@ namespace QuizMaker
                 int questionsPlayed = 0;
                 int sumOfAllPoints = 0;
                 int totalQuestionsToPlay = 20;
+                List<UserQuestionsAndAnswers> savedQnAList = Data.GetQnAListToXml(path);
+                
+                    //TODO example: load xml here 
                 do
                 {
                     // getting random question from the list
-                    UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path);
+                    UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(path, savedQnAList);
+                    //TODO remove item rom list so its not in the card stack anymore
                     // printing out random question and asnwer options to the user
                     UI.PrintQuestionsAndAnswers(randomQuestion);
                     string userAnswer = Console.ReadLine().ToUpper();
@@ -87,13 +95,17 @@ namespace QuizMaker
                     userAnswer = CheckIfNullOrEmpty(userAnswer);
                     userAnswer = CheckIfINputIsALetter(userAnswer);
                     userAnswer = GetCorrectUsrInput(userAnswer, randomQuestion);
-
+                    // Taking user input as answer after validation
                     List<string> userInputArray = UI.TakeFromUserAnswerOption(userAnswer, randomQuestion);
+                    // Get matched correct answers
                     List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
+                    // counting points for good and bad answers
                     int points = Logic.CountingGamePoints(userCorrectAnswers, randomQuestion);
                     sumOfAllPoints = sumOfAllPoints + points;
                     questionsPlayed++;
                 } while (questionsPlayed < totalQuestionsToPlay);
+
+                // No negative result after played game
                 if (sumOfAllPoints < 0)
                 {
                     sumOfAllPoints = 0;

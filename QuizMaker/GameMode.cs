@@ -10,6 +10,7 @@ namespace QuizMaker
     {
         AddQuestions,
         PlayGame,
+        Exit,
         INVALID
     }
 }

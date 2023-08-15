@@ -37,6 +37,7 @@ namespace QuizMaker
             Console.WriteLine("Please make your selection");
             Console.WriteLine("0 Add Questions");
             Console.WriteLine("1 Play Game");
+            Console.WriteLine("2 Exit Game");
             int Selection = int.Parse(Console.ReadLine());
             switch (Selection)
             {
