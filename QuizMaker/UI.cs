@@ -16,15 +16,17 @@ namespace QuizMaker
             Console.WriteLine("Mark correct answer with the star symbol.If there is more than one correct answers add star symbols to all good answers.");
             Console.WriteLine("Here is example:");
             Console.WriteLine("“What color is the sky? | red | blue* | green”.");
+            Console.WriteLine("To quit adding questions please press e and enter!");
         }
 
         public static void GamePlayRools()
         {
-            Console.WriteLine("You will get random question with 4 options to choose from.");
+            Console.WriteLine("You will get 20 random questions with 4 options to choose from.");
             Console.WriteLine("Read question carefully, some questions has two answers.");
             Console.WriteLine("To put answer you need to write A,B,C or D.");
             Console.WriteLine("If there is more than one correct answers you should separate it by “,” As example c,d.");
-            Console.WriteLine("You will get points for each correct answer, but for wrong answers it willl be taken.");
+            Console.WriteLine("You will get points for each correct answer. For wrong answers will be minus points.");
+            Console.WriteLine("Your points will be counted after all 20 questions");
             Console.WriteLine("Good luck!");
         }
         public static bool Continue()
@@ -43,9 +45,10 @@ namespace QuizMaker
             {
                 case 0:
                     return GameMode.AddQuestions;
-
                 case 1:
                     return GameMode.PlayGame;
+                case 2:
+                    return GameMode.Exit;
 
                 default:
                     return GameMode.INVALID;
@@ -120,7 +123,7 @@ namespace QuizMaker
             foreach (UserQuestionsAndAnswers item in qNaList)
             {
                 questionExist = qNaList.Exists(x => x.Question == uQnA.Question);
-                Console.WriteLine($"{questionExist}");                
+                Console.WriteLine($"{questionExist}");
                 break;
             }
             return questionExist;
@@ -130,12 +133,13 @@ namespace QuizMaker
         public static void PrintPointsResponse(int points, List<string> userCorrectAnswers)
         {
             switch (points)
-            {                
+            {
                 case 1:
                     Console.WriteLine($"One answer is good! It is {userCorrectAnswers[0]}");
                     break;
                 case 2:
-                    Console.WriteLine($"Both answers is good! They are {userCorrectAnswers[0]} and {userCorrectAnswers[1]}"); break;
+                    Console.WriteLine($"Both answers is good! They are {userCorrectAnswers[0]} and {userCorrectAnswers[1]}");
+                    break;
                 case -1:
                     Console.WriteLine("Wrong answer!");
                     break;
@@ -143,8 +147,8 @@ namespace QuizMaker
                     Console.WriteLine("Wrong both answers!");
                     break;
                 default:
-                    Console.WriteLine("Something went wrong!"); break;
-
+                    Console.WriteLine("Something went wrong!");
+                    break;
             }
         }
         public static string CheckIfNullOrEmpty(string userAnswer)

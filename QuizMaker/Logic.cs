@@ -3,16 +3,16 @@
     internal class Logic
     {
         /// <summary>
-        /// Knuth shuffle to get non repeatable questions rinted for the user
+        /// Printing out random question to the user without repeating it more than 1 time
         /// </summary>
-        /// <param name="path">stored questions and answers list path in local memory</param>
-        /// <returns> Random question to the user</returns>
-        public static UserQuestionsAndAnswers GetRandomQuestion(string path, List<UserQuestionsAndAnswers> savedQnAList)
+        /// <param name="savedQnAList">Getting list from loacl storage and using to to get random question</param>
+        /// <returns>Structurized question data </returns>
+       
+        public static UserQuestionsAndAnswers GetRandomQuestion(List<UserQuestionsAndAnswers> savedQnAList)
         {
             // Knuth shuffle
             var random = new Random();
             UserQuestionsAndAnswers questionsForUser;
-
             int index = random.Next(savedQnAList.Count);
             questionsForUser = savedQnAList[index];
             savedQnAList.RemoveAt(index);           
