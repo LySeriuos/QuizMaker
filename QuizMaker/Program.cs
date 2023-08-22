@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace QuizMaker
 {
@@ -46,6 +47,7 @@ namespace QuizMaker
                     {
                         // taking user questions and answers
                         userQuestions = UI.TakeUserInputAsQnA(qNaList, path);
+
                         // quiting adding questions and coming back to game menu after user pressed "e"
                         if (userQuestions.ToUpper() == "E")
                         {
@@ -53,14 +55,19 @@ namespace QuizMaker
                         }
                         // splitting user input and assigning these as variables using class
                         UserQuestionsAndAnswers uQnA = UI.ParseUserQnAString(userQuestions);
+
                         // splitting user input to get and assign marked correct answer 
                         List<string> correctAnswers = UI.ParseCorrectAnswers(userQuestions);
+
                         // Gettig List if it was saved or creating empty list if the "path" doesn't exist
                         qNaList = Data.GetQnAListToXml(path);
+
                         // assigning correct answers to the same class as questions and answers
                         uQnA.CorrectAnswers = correctAnswers;
+
                         // checking if exactly the same question already is in the saved list
                         bool questionExist = CheckIfQuestionAlreadyExsist(qNaList, uQnA);
+
                         // using switch case to add questions and answers if these are unique or throw error to ask for unique question
                         switch (questionExist)
                         {
@@ -77,7 +84,7 @@ namespace QuizMaker
                     } while (userQuestions.Length > 0); // how to quit adding question or going back to the main menu.
                 }
                 // if user chose option to play a game this code will be lounched
-                if (selection == GameMode.PlayGame)
+                else if (selection == GameMode.PlayGame)
                 {
                     UI.GamePlayRools();
                     int questionsPlayed = 0;
@@ -88,18 +95,25 @@ namespace QuizMaker
                     {
                         // getting and pritning to user random question from the list
                         UserQuestionsAndAnswers randomQuestion = Logic.GetRandomQuestion(savedQnAList);
-                        
+
                         // printing out random question and asnwer options to the user
                         UI.PrintQuestionsAndAnswers(randomQuestion);
                         string userAnswer = Console.ReadLine().ToUpper();
+                        if (userAnswer.ToUpper() == "E")
+                        {
+                            break;
+                        }
                         // user input validation
                         userAnswer = CheckIfNullOrEmpty(userAnswer);
                         userAnswer = CheckIfINputIsALetter(userAnswer);
                         userAnswer = GetCorrectUsrInput(userAnswer, randomQuestion);
+
                         // Taking user input as answer after validation
                         List<string> userInputArray = UI.TakeFromUserAnswerOption(userAnswer, randomQuestion);
+
                         // Get matched correct answers
                         List<string> userCorrectAnswers = Logic.GetMatchedCorrectAnswer(randomQuestion, userInputArray);
+
                         // counting points for good and bad answers
                         int points = Logic.CountingGamePoints(userCorrectAnswers, randomQuestion);
                         sumOfAllPoints = sumOfAllPoints + points;
@@ -118,7 +132,6 @@ namespace QuizMaker
                     Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints}");
                 }
             }
-            
             //7. Add winning points if it was correct. Print it later at the end of the game.
             // Bonus:
             //8. Save players name and scores to the txt file and show the top score at the beggining of the game.
