@@ -125,10 +125,6 @@ namespace QuizMaker
                     {
                         sumOfAllPoints = 0;
                     }
-                    else
-                    {
-                        sumOfAllPoints = sumOfAllPoints;
-                    }
                     Console.WriteLine($"Your total points after 20 questions: {sumOfAllPoints}");
                 }
             }

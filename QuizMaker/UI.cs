@@ -10,6 +10,7 @@ namespace QuizMaker
 {
     internal class UI
     {
+
         public static void PrintRoolsToCreateQnA()
         {
             Console.WriteLine("Write your questions and answers in one line.");
@@ -29,14 +30,22 @@ namespace QuizMaker
             Console.WriteLine("Your points will be counted after all 20 questions");
             Console.WriteLine("Good luck!");
         }
+        /// <summary>
+        /// Continue object
+        /// </summary>
+        /// <returns>if user input is "Y"</returns>
         public static bool Continue()
         {
             Console.WriteLine("Want to continue?");
             return Console.ReadLine().ToUpper() == "Y";
         }
+        /// <summary>
+        /// The main game menu
+        /// </summary>
+        /// <returns>return chosed GameMode</returns>
         public static GameMode SelectGameMode()
         {
-            Console.WriteLine("Please make your selection");
+            Console.WriteLine("Please make your selection\n");
             Console.WriteLine("0 Add Questions");
             Console.WriteLine("1 Play Game");
             Console.WriteLine("2 Exit Game");
@@ -54,18 +63,27 @@ namespace QuizMaker
                     return GameMode.INVALID;
             }
         }
-
-        public static string TakeUserInputAsQnA(List<UserQuestionsAndAnswers> qNaList, string path)
+        /// <summary>
+        /// checking if the file with questions exists and then continue to add questions in it
+        /// </summary>
+        /// <param name="path">Path to saved local file with questions and asnwers</param>
+        /// <returns>User input</returns>
+        public static string TakeUserInputAsQnA(string path)
         {
             if (File.Exists(path))
             {
-                qNaList = Data.GetQnAListToXml(path);
+                Data.GetQnAListToXml(path);
             }
             Console.WriteLine();
             Console.WriteLine("Write your questions with the answers!");
             string userQuestion = Console.ReadLine();
             return userQuestion;
         }
+        /// <summary>
+        /// Spliting user input to separate strings and then assigning to the object class variables
+        /// </summary>
+        /// <param name="userQna">Users questions and answers input</param>
+        /// <returns> Assigned object</returns>
 
         public static UserQuestionsAndAnswers ParseUserQnAString(string userQna)
         {
@@ -86,11 +104,15 @@ namespace QuizMaker
             return qna;
         }
 
+        /// <summary>
+        /// Spliting user input and assigning to Correct answer List
+        /// </summary>
+        /// <param name="userQna"></param>
+        /// <returns>Correct Answers List</returns>
         public static List<string> ParseCorrectAnswers(string userQna)
         {
             List<string> corAnQ = new List<string>();
             string[] userQnaArray = userQna.Split(" | ");
-            // magic number
             int arrayPosition;
             for (arrayPosition = 0; arrayPosition < userQnaArray.Length; arrayPosition++)
             {
@@ -106,6 +128,10 @@ namespace QuizMaker
             return corAnQ;
         }
 
+        /// <summary>
+        /// Printing out random question to the User
+        /// </summary>
+        /// <param name="randomQuestion">Random Questtion from QnA file</param>
         public static void PrintQuestionsAndAnswers(UserQuestionsAndAnswers randomQuestion)
         {
             string question = randomQuestion.Question;
@@ -116,6 +142,12 @@ namespace QuizMaker
             Console.WriteLine($"\nQuestion: {question} \n\nA: {answerOne} \nB: {answerTwo} \nC: {answerThree} \nD: {answerFour}");
         }
 
+        /// <summary>
+        /// Method to check if the question already exists
+        /// </summary>
+        /// <param name="qNaList"> Saved QnA List in the Local drive </param>
+        /// <param name="uQnA">QnA class. It will be used to compare question to question to check if there allready is one</param>
+        /// <returns>true or false if question exist or no</returns>
         public static bool CheckIfQuestionAlreadyExsist(List<UserQuestionsAndAnswers> qNaList, UserQuestionsAndAnswers uQnA)
         {
             bool questionExist = true;
@@ -129,7 +161,11 @@ namespace QuizMaker
             return questionExist;
         }
 
-
+        /// <summary>
+        /// Qounting points for the user
+        /// </summary>
+        /// <param name="points">Uer points for good and bad answers</param>
+        /// <param name="userCorrectAnswers"> Printing feedback on witch answers was good</param>
         public static void PrintPointsResponse(int points, List<string> userCorrectAnswers)
         {
             switch (points)
@@ -151,6 +187,12 @@ namespace QuizMaker
                     break;
             }
         }
+
+        /// <summary>
+        /// Validation method 1
+        /// </summary>
+        /// <param name="userAnswer">User input</param>
+        /// <returns>Validated user input</returns>
         public static string CheckIfNullOrEmpty(string userAnswer)
         {
             while (string.IsNullOrEmpty(userAnswer))
@@ -161,6 +203,13 @@ namespace QuizMaker
             return userAnswer;
         }
 
+        /// <summary>
+        /// Validation method to check if user gave multiple answers when random question has more than one correct answer. 
+        /// Or single answer to single correct answer.
+        /// </summary>
+        /// <param name="userAnswer">User input</param>
+        /// <param name="randomQuestion">/Random question</param>
+        /// <returns>Validated user input</returns>
         public static string GetCorrectUsrInput(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
             int usrInpLength = userAnswer.Length;
@@ -180,6 +229,11 @@ namespace QuizMaker
             return userAnswer;
         }
 
+        /// <summary>
+        /// Validation method to check if input is a letter and not a sign
+        /// </summary>
+        /// <param name="userAnswer">User input</param>
+        /// <returns>Validated user input</returns>
         public static string CheckIfINputIsALetter(string userAnswer)
         {
             char userLetterChar = userAnswer[0];
@@ -192,6 +246,14 @@ namespace QuizMaker
             }
             return userAnswer;
         }
+
+        /// <summary>
+        /// This method takes answer option or options by A,B,C,D letters and then assign them to the real value.
+        /// Later it add to the answer list for later.
+        /// </summary>
+        /// <param name="userAnswer">User Input as answer </param>
+        /// <param name="randomQuestion">Random Question</param>
+        /// <returns>The list with assigned user answers</returns>
         public static List<string> TakeFromUserAnswerOption(string userAnswer, UserQuestionsAndAnswers randomQuestion)
         {
             // spliting user input for multiple answers
