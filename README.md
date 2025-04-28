@@ -1,35 +1,24 @@
-# MyHome – Blazor Smart Home Tracker
+# Quiz Maker – C# Console App
 
-**MyHome** is a Blazor web application that helps manage home devices, warranties, and smart-home setup details across multiple properties.
+**Quiz Maker** is a console application built with C# that allows users to create custom quizzes and take them interactively.
 
-## 🔑 Features
+## 📝 Features
 
-- User authentication and role-based authorization
-- QR code generation for instant device lookup
-- Adding IP & MAC address details for smart device tracking
-- Multi-property support (manage multiple locations)
-- One-click access to manuals and receipts
-- Secure storage for warranty and insurance documents
-- Built with Blazor (Server/WebAssembly), C#, SQLite, and Entity Framework Core
+- Create custom questions and quizzes
+- Take quizzes via console interface
+- Practice programming logic, data storage, and user input handling
 
 ## 🚀 Technologies
 
-- C#, .NET, Blazor
-- Entity Framework Core
-- SQLite
-- Git & GitHub
-
-## 📸 Screenshots
-- Coming Soon...
-- _Add screenshots of dashboard, QR scan, and device list._
+- C#
+- .NET Console Application
 
 ## 📂 How to Run
 
 1. Clone the repository:
-git clone https://github.com/LySeriuos/MyHome.git
+git clone https://github.com/LySeriuos/Quiz_Maker.git
 2. Open in Visual Studio
-3. Restore NuGet packages
-4. Run the project
+3. Build and run the application
 
 ## 📫 Author
 
